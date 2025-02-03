@@ -1,0 +1,241 @@
+.login-modal * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.login-modal html, .login-modal body {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  place-items: center;
+  background: #e0f7fa; /* Light cyan background */
+  /* background: linear-gradient(-135deg, #004d40, #00796b); */
+}
+.login-modal ::selection {
+  background: #00796b; /* Teal selection background */
+  color: #fff;
+}
+.login-modal .wrapper {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+}
+.login-modal .wrapper .title {
+  font-size: 35px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 100px;
+  color: #fff;
+  user-select: none;
+  border-radius: 15px 15px 0 0;
+  background: linear-gradient(-135deg, #00796b, #004d40); /* Teal to dark green gradient */
+}
+.login-modal .wrapper form {
+  padding: 10px 30px 50px 30px;
+}
+.login-modal .wrapper form .field {
+  height: 50px;
+  width: 100%;
+  margin-top: 20px;
+  position: relative;
+}
+.login-modal .wrapper form .field input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 17px;
+  padding-left: 20px;
+  border: 1px solid lightgrey;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+.login-modal .wrapper form .field .submit-button {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 17px;
+  padding-left: 20px;
+  border: 1px solid lightgrey;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  color: #fff;
+  border: none;
+  margin-top: -10px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  background: linear-gradient(-135deg, #00796b, #004d40); /* Teal to dark green gradient */
+  padding: 10px 0; /* Same padding as the input */
+  display: block;
+}
+.login-modal .wrapper form .field input:focus,
+.login-modal .wrapper form .field input:valid {
+  border-color: #004d40; /* Dark green border on focus */
+}
+.login-modal .wrapper form .field label {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  color: #999999;
+  font-weight: 400;
+  font-size: 17px;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+}
+.login-modal .wrapper form .field input:focus ~ label,
+.login-modal .wrapper form .field input:valid ~ label {
+  top: 0%;
+  font-size: 16px;
+  color: #004d40; /* Dark green label color */
+  background: #fff;
+  transform: translateY(-50%);
+}
+.login-modal .wrapper form .content {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  font-size: 16px;
+  align-items: center;
+  justify-content: space-around;
+}
+.login-modal .wrapper form .content .checkbox {
+  display: flex;  
+  align-items: center;
+  justify-content: center;
+}
+.login-modal .wrapper form .content input {
+  width: 15px;
+  height: 15px;
+  background: #004d40; /* Dark green checkbox */
+}
+.login-modal .wrapper form .content label {
+  color: #262626;
+  user-select: none;
+  padding-left: 5px;
+}
+.login-modal .wrapper form .content .pass-link {
+  color: #004d40;
+}
+.login-modal .wrapper form .field .submit-button {
+  color: #fff;
+  border: none;
+  padding-left: 0;
+  margin-top: -10px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  background: linear-gradient(-135deg, #00796b, #004d40); /* Teal to dark green gradient */
+  transition: all 0.3s ease;
+  display: block;
+  width: 100%;
+  padding: 10px 0; /* Same padding as the input */
+  border-radius: 25px; /* Same border-radius as the input */
+}
+.login-modal .wrapper form .field input[type="submit"]:active {
+  transform: scale(0.95);
+}
+.login-modal .wrapper form .signup-link {
+  color: #262626;
+  margin-top: 20px;
+  text-align: center;
+}
+.login-modal .wrapper form .pass-link a,
+.login-modal .wrapper form .signup-link a {
+  color: #591ce6; /* Dark green link color */
+  text-decoration: none;
+}
+.login-modal .wrapper form .pass-link a:hover,
+.login-modal .wrapper form .signup-link a:hover {
+  text-decoration: underline;
+}
+.modal-content {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: transparent;
+  background-clip: padding-box;
+  border: none; 
+  border-radius: .3rem;
+  outline: none;
+}
+.modal-header {
+  border-bottom: none;  /* Remove any bottom border */
+  margin-bottom: 0;     /* Remove any bottom margin */
+  padding-bottom: 0;    /* Remove any bottom padding */
+}
+.login-modal .wrapper form .signin-link {
+  color: #262626;
+  margin-top: 20px;
+  text-align: center;
+}
+.wrapper .close {
+  position: relative; /* Adjust positioning */
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+}
+/* Role Selection Buttons */
+.role-button {
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 25px;
+  background: linear-gradient(-135deg, #00796b, #004d40); /* Teal to dark green gradient */
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.role-button:hover {
+  background: linear-gradient(-135deg, #004d40, #00796b); /* Invert gradient */
+}
+
+/* Features List */
+.features-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.features-list li {
+  padding: 10px 15px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+}
+
+.feature-highlight {
+  background-color: #d4edda; /* Light green */
+  border-color: #28a745; /* Dark green */
+}
+
+.role-button {
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 25px;
+  background: #00796b; /* Default teal */
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.role-button:hover {
+  background: #00574b; /* Darker teal on hover */
+}
+
+.role-button.selected-role {
+  background: #004d40; /* Highlight for selected role */
+  box-shadow: 0 0 10px rgba(0, 77, 64, 0.7); /* Optional glow */
+}
