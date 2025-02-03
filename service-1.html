@@ -811,20 +811,15 @@ document.addEventListener("DOMContentLoaded", () => {
                   <option value="PELLETS">PELLETS</option>
               </select><br>
               
-            <button type="button" onclick="generatePrediction()">Predict</button>
+                <button type="button" id="predictButton" onclick="generatePrediction()" disabled>Predict</button>
+            <p id="warningMessage" style="color: red; display: none;">Please fill in all fields first.</p>
             <div class="text-center mt-4">
                 <h2>Predicted Weight:</h2>
                 <h3 class="text-info" id="predictedWeight">---</h3>
             </div>
-              <!--button type="submit">Predict</button>
-              <div class="text-center mt-4">
-                <h2>Predicted Weight:</h2>
-                <h3 class="text-info">123</h3>
-            </div-->
-          </form>
-      </div>
-  </div>
- 
+        </form>
+    </div>
+</div>
               </div>
           </form>
           <!-----
@@ -2226,6 +2221,33 @@ onAuthStateChanged(auth, async (user) => {
         }, 2000);
     }
     </script>
+<script>
+    function checkFormCompletion() {
+        const temp = document.getElementById('TEMP').value;
+        const wph = document.getElementById('W_PH').value;
+        const stock = document.getElementById('STOCK').value;
+        const feeds = document.getElementById('FEEDS').value;
+        const land = document.getElementById('LAND').value;
+        const feedType = document.getElementById('FEEDTYPE').value;
+        const warningMessage = document.getElementById('warningMessage');
+        const predictButton = document.getElementById('predictButton');
+
+        if (temp && wph && stock && feeds && land && feedType) {
+            predictButton.disabled = false;
+            warningMessage.style.display = 'none';
+        } else {
+            predictButton.disabled = true;
+            warningMessage.style.display = 'block';
+        }
+    }
+
+    document.getElementById('TEMP').addEventListener('input', checkFormCompletion);
+    document.getElementById('W_PH').addEventListener('input', checkFormCompletion);
+    document.getElementById('STOCK').addEventListener('input', checkFormCompletion);
+    document.getElementById('FEEDS').addEventListener('input', checkFormCompletion);
+    document.getElementById('LAND').addEventListener('input', checkFormCompletion);
+    document.getElementById('FEEDTYPE').addEventListener('change', checkFormCompletion);
+</script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script> 
