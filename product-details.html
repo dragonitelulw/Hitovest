@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Custom styling for product details */
+    body {
+      background: url('images/background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Poppins', sans-serif;
+    }
+    .product-container {
+      display: flex;
+      gap: 20px;
+      margin-top: 50px;
+      padding: 20px;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .product-image {
+      flex: 1;
+      max-width: 500px;
+    }
+    .product-image img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ccc;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      margin-top: 10px;
+      padding-bottom: 10px;
+    }
+    .carousel img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      cursor: pointer;
+      border: 1px solid #ccc;
+    }
+    .product-details {
+      flex: 1;
+    }
+    .product-details h1 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+    .product-price {
+      font-size: 24px;
+      font-weight: bold;
+      color: #28a745;
+    }
+    .toggle-section {
+      margin-top: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .toggle-section-content {
+      display: none;
+      padding: 10px;
+      background: #f9f9f9;
+      border-radius: 5px;
+    }      
+    </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container-2 d-flex justify-content-between">
+<!-- Navbar Logo -->
+<a>     
+  <img src="images/hitovest-high-resolution-logo-transparent.png" alt="HITOVEST Logo" class="logo-1">
+</a>
+
+    <!-- Navigation Links -->
+    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <li class="nav-item"> <a class="nav-link active" href="index.html">Home</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="service-1.html">System Module</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="team.html">Team</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="dashboard.html">Dashboard</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="contact.html">Contact</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="products.html">Store</a> </li>
+      </ul>
+    </div>
+
+    <!-- Login/Logout Button -->
+    <div class="navbar-right">
+      <a id="loginLink" class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">LOGIN</a>
+    </div>
+  </div>
+</nav>
+<!-- End Navbar --> 
+
+  <!-- Store Products -->
+  <section class="about section-padding prelative">
+    <div class="col-md-12 text-center">
+      <h3>Store</h3>
+    </div>
+  </section>
+ 
+<div class="product-container">
+  <div class="product-image">
+    <img id="mainProductImage" src="" alt="Product Image" onclick="openFullscreen(this)" />
+    <div class="carousel" id="imageCarousel"></div>
+  </div>
+  <div class="product-details">
+    <h1 id="productName"></h1>
+    <div><strong>Price:</strong> <span id="productPrice" class="product-price"></span></div>
+    <div><strong>Stock:</strong> <span id="productStock"></span></div>
+    <button class="btn btn-primary mt-3">Add to Cart</button>
+    <div class="toggle-section" onclick="toggleSection('descriptionContent')">Product Description ▼</div>
+    <div class="toggle-section-content" id="descriptionContent"></div>
+    <div class="toggle-section" onclick="toggleSection('featuresContent')">Product Features ▼</div>
+    <div class="toggle-section-content" id="featuresContent"></div>
+  </div>
+</div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBHKPP96j8T_ZDh2SeXH2dR1fU7dx5fXVc",
+      authDomain: "login2-bbcac.firebaseapp.com",
+      projectId: "login2-bbcac",
+      storageBucket: "login2-bbcac.appspot.com",
+      messagingSenderId: "355293344565",
+      appId: "1:355293344565:web:58022c1d4e78566ab2527c"
+  };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    function toggleSection(id) {
+      var section = document.getElementById(id);
+      section.style.display = section.style.display === 'block' ? 'none' : 'block';
+    }
+    function openFullscreen(img) {
+      var newTab = window.open();
+      newTab.document.write('<img src="' + img.src + '" style="width:100%;">');
+    }
+    document.addEventListener("DOMContentLoaded", async function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get("id");
+      if (!productId) return;
+      const productRef = doc(db, "products", productId);
+      const productSnap = await getDoc(productRef);
+      if (productSnap.exists()) {
+        const product = productSnap.data();
+        document.getElementById("mainProductImage").src = product.productImages[0];
+        document.getElementById("productName").textContent = product.productName;
+        document.getElementById("productPrice").textContent = `₱${product.productPrice}`;
+        document.getElementById("productStock").textContent = `${product.productStock} pieces available`;
+        document.getElementById("descriptionContent").innerHTML = product.productDescription;
+        document.getElementById("featuresContent").innerHTML = product.productFeatures;
+        let imageCarousel = document.getElementById("imageCarousel");
+        product.productImages.forEach(img => {
+          let imageElement = document.createElement("img");
+          imageElement.src = img;
+          imageElement.onclick = () => document.getElementById("mainProductImage").src = img;
+          imageCarousel.appendChild(imageElement);
+        });
+      }
+    });
+      </script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

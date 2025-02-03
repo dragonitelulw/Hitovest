@@ -1,0 +1,1096 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    background-color: #f5f5f5; /* Light background for a natural look */
+}
+a {
+    color: #007bff; /* Water blue for links */
+}
+a:hover {
+    color: #0056b3; /* Darker blue on hover */
+}
+h1 {
+    font-weight: 700;
+    font-size: 84px;
+    text-align: center;
+}
+h2 {
+    font-weight: 700;
+    font-size: 45px;
+    text-align: center;
+}
+h3 {
+    font-weight: 600;
+    font-size: 45px;
+    margin-top: 10px; /* Adjust as needed */
+    margin-bottom: 10px; /* Adjust as needed */
+    text-align: center; /* For centering */
+    line-height: 1.5; /* Adjust line spacing */
+    font-weight: 650;
+}
+h4, h5 {
+    font-weight: 600;
+    color: #000;
+}
+h6 {
+    font-weight: 500;
+    font-size: 20px;
+}
+h7 {
+    font-weight: 600;
+    font-size: 35px;
+    color: #000;
+}
+p{
+    color: #000;
+}
+.white {
+    color: #ffffff !important;
+}
+.black {
+    color: #000000;
+}
+.container-2 {
+    width: 200%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Align logo to left, button to right */
+    align-items: center; /* Vertically center the items */
+    position: fixed;
+    width: 100%;
+    line-height: 75px;
+    background: #004d40; /* Dark teal background for navbar */
+    top: 0;
+    z-index: 1030;
+    background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+/* Logo */
+.navbar-brand {
+    flex: 1; /* Logo stays to the left */
+    display: inline-block;
+    margin-right: auto;
+    height: 60px;
+}
+
+/* Navigation Links */
+.navbar-nav {
+    flex: 2; /* Adjust space for nav links */
+    display: flex;
+    justify-content: right; /* Center the nav links */
+    align-items: center;
+    margin-right: 125px;
+}
+
+/* Each Nav Item */
+.nav-item {
+    margin: 0 15px; /* Add spacing between nav items */
+}
+
+/* Navigation Links Style */
+.nav-link {
+    color: #fff; /* White text for links */
+    text-transform: none;
+    font-weight: normal;
+    font-size: 15px;
+}
+
+.nav-link:hover {
+    color: #007bff; /* Blue hover effect */
+}
+/* Ensure the logo color remains the same on scroll */
+.nav-scroll .navbar-brand {
+    color: inherit; /* Prevent color change on scroll */
+}
+
+/* Login Button */
+.navbar-right {
+    flex: 1; /* Push login button to the right */
+    display: inline-block;
+    text-align: right; /* Align it to the far right */
+    margin-left: auto;
+}
+.nav-scroll {
+    background: #004d40;
+    -webkit-box-shadow: 0 1px 8px 3px rgba(0, 0, 0, 0.0509803922);
+    box-shadow: 0 1px 8px 3px rgba(0, 0, 0, 0.0509803922);
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease;
+}
+/* Specific rules for nav links to avoid affecting the logo */
+.navbar-nav .nav-link.active {
+    color: #007bff !important; /* Applies blue color only to nav links */
+}
+.banner {
+    background-image: url('images/ocean-quality-e1562663860619.png'); /* Ensure the background image is named correctly and placed in the right directory */
+    background-size: cover;
+    color: #fff; /* Adjust text color for visibility against a dark background */
+    background-position: center;
+}
+.banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Black with 50% opacity overlay */
+    z-index: 0;
+}
+.banner-text {
+    text-align: center;
+}
+.prelative {
+    position: relative
+}
+.section-padding {
+    padding: 112px 0px;
+}
+.section-padding-2 {
+    padding: 280px 0px;
+}
+.section-padding-3 {
+    padding: 120px 0px;
+}
+.sectioner-header {
+    width: 69%;
+    margin: 0 auto;
+}
+.line {
+    height: 2px;
+    width: 50px;
+    background: #007bff;
+    display: block;
+    margin: 20px auto 20px;
+}
+.line::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 150px;
+    height: 2px;
+    border-bottom: 2px dashed #007bff;
+    margin-left: -75px;
+}
+.sectioner-header p {
+    color: #818992;
+    font-size: 17px;
+}
+.section-content {
+    margin-top: 80px;
+}
+.icon-box {
+    margin-bottom: 50px;
+}
+.icon-box button {
+    display: block;
+    position: relative;
+    width: 135px;
+    height: 135px;
+    border-radius: 100px;
+    background: #007bff;
+    background: linear-gradient(to left, #007bff, #66bb6a); /* Blue to green gradient */
+    color: #ffffff;
+    font-size: 50px;
+    line-height: 135px;
+    margin: 0 auto;
+    border: none;
+    cursor: pointer;
+}
+
+.icon-box button i {
+    font-size: 50px;
+    line-height: 135px;
+    color: #ffffff;
+}
+
+.icon-box button:hover {
+    background: linear-gradient(to right, #007bff, #66bb6a); /* Blue to green gradient */
+}
+.icon-box h5 {
+    margin-top: 30px;
+}
+.icon-box p {
+    color: #818992;
+    font-size: 14px;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+.about-btn:hover {
+    background: #007bff;
+    color: #ffffff;
+    text-decoration: none;
+}
+.single-feature {
+    margin-bottom: 80px;
+    margin-top: 40px;
+}
+.single-feature h5 {
+    font-size: 16px;
+}
+.media-right-margin {
+    margin-right: 25px;
+}
+.single-feature p {
+    font-size: 13px;
+}
+.icon-border span {
+    display: block;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    color: #007bff;
+    font-size: 18px;
+    line-height: 50px;
+    border: 1px solid #007bff;
+}
+.team {
+    background: #e0f7fa; /* Light cyan background */
+    border-top: 1px solid #b2ebf2;
+}
+.team-detail {
+    margin-top: 40px;
+}
+.team-detail img {
+    border-radius: 50%;
+    width: 70%;
+}
+.team-detail h4 {
+    color: #007bff;
+    margin-top: 20px;
+    font-size: 17px;
+    margin-bottom: 0px;
+}
+.testimonial {
+    background: #007bff;
+    background: linear-gradient(to left, #007bff, #66bb6a); /* Blue to green gradient */
+    padding: 100px 0px;
+    position: relative;
+}
+.testimonial::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url(images/pattern.png);
+}
+.faq {
+    background: #e0f7fa; /* Light cyan background */
+    border-bottom: 1px solid #b2ebf2;
+}
+.faq-content {
+    margin: 20px 0px;
+}
+.faq-content h4 {
+    font-weight: 400;
+    font-size: 20px;
+}
+.faq-content p {
+    color: #818992;
+    font-weight: 300;
+    margin-top: 15px;
+}
+#contact_form .form-input {
+    border: 1px solid #e4e4e4;
+}
+input {
+    height: 42px;
+    padding: 0 1rem;
+    background: #fff;
+    border-radius: 30px;
+    margin-bottom: 1rem;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    border: 0;
+}
+#contact_form textarea {
+    resize: none;
+    padding: 1rem;
+    height: 150px;
+    background: #fff;
+    border: 0;
+    border-radius: 30px;
+    margin-bottom: 1rem;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.btn-grad {
+    padding: .7rem 2rem;
+    display: inline-block;
+    color: #fff;
+    border-radius: 2rem;
+    border: 0;
+    background: #007bff;
+    background: linear-gradient(to left, #007bff, #66bb6a); /* Blue to green gradient */
+    cursor: pointer;
+}
+.contact-info {
+    padding: 2rem 2rem 1rem;
+    border-radius: 8px;
+    background: #007bff;
+    background: linear-gradient(to left, #007bff, #66bb6a); /* Blue to green gradient */
+}
+.contact-item {
+    margin: 23px 0px;
+}
+.contact-item i {
+    font-size: 20px;
+}
+.contact-item p {
+    line-height: 20px;
+    margin: 0;
+}
+.download {
+    background: #007bff;
+    background: linear-gradient(to left, #007bff, #66bb6a); /* Blue to green gradient */
+    padding: 100px 0px;
+    position: relative;
+}
+.download::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url(images/pattern.png);
+}
+.download ul {
+    list-style: none;
+}
+.download ul li {
+    display: inline-block;
+    margin: 0px 10px 10px 0px;
+}
+.download ul li a {
+    display: block;
+}
+.download ul li a img {
+    width: 150px;
+    border-radius: 7px;
+}
+.footer-copy {
+    background: #ffffff;
+    color: #242424;
+    font-size: 13px;
+    text-align: center;
+    padding: 15px 0px;
+}
+.footer-copy p {
+    margin-bottom: 0px;
+}
+@media (max-width: 991px) {
+    .swiper-slide {
+        width: calc(50% - 20px); /* On smaller screens, each slide takes half of the container */
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 767px) {
+    .swiper-slide {
+        width: calc(100% - 20px); /* On very small screens, each slide takes full width */
+        margin: 0 10px;
+    }
+}
+
+/* Equipment Section */
+#equipment .single-feature {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+#equipment .single-feature:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+#equipment .feature-icon {
+    font-size: 40px;
+    color: #66bb6a;
+    margin-bottom: 15px;
+}
+/* Background image for the about section */
+.about {
+    background-image: url('images/istockphoto-171211255-2048x2048.jpg'); /* Ensure the background image is named correctly and placed in the right directory */
+    background-size: cover;
+    color: #fff; /* Adjust text color for visibility against a dark background */
+    }
+.about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Black with 50% opacity overlay */
+    z-index: 0;
+}
+.section-subtitle {
+    font-weight: 700;
+    font-size: 45px;
+    text-align: center;
+}
+.catfish-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+    background-color: #f0f8ff; /* light blue or other professional aesthetic color */
+}
+
+.image-container {
+    position: relative;
+    width: 50%; /* You can adjust this based on your layout */
+    margin: 0 auto; /* Center the container */
+}
+
+.main-image {
+    width: 100%; /* Ensure the main image takes up the full width of the container */
+    height: auto; /* Maintain the aspect ratio */
+    max-width: 800px; /* Limit the max width so it doesn't get too big */
+    object-fit: cover; /* Adjust how the image fits */
+    border-radius: 10px; /* Optional: Add rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visual effect */
+}
+
+.overlay-image {
+    position: absolute;
+    bottom: -20px;
+    left: 20px;
+    width: 40%;
+    border: 5px solid white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.text-content {
+    width: 45%;
+    padding-left: 30px;
+}
+
+.text-content h2 {
+    font-size: 45px;
+    color: #004080; /* Professional blue */
+}
+
+.text-content p {
+    text-align: justify; /* Justify text */
+    margin: 20px 30px; /* Adjust margins for better readability */
+}
+
+.text-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 30px;
+}
+
+.text-content ul li {
+    font-size: 1.1rem;
+    margin: 10px 0;
+    color: #004080;
+}
+
+.text-content ul li strong {
+    font-size: 1.3rem;
+    color: #000;
+}
+.video-section {
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    justify-content: flex-start; /* Move items closer together */
+    padding: 50px;
+    background-color: #f9f9f9; /* Soft grey or white for a clean look */
+}
+
+.video-section {
+    background: url(images/1000_F_759396294_fqSBJ5EwLRUVy92Ze7fUC5ovD0Tr8TBL.jpg) no-repeat fixed center;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.video-container {
+    width: 53%;
+    padding-right: 20px;
+    margin-top: 65px;
+}
+
+.video-info {
+    width: 45%;
+    margin-top: 70px;
+    margin: 0 30px; /* Add some horizontal margin */
+    text-align: justify; /* Justify the text content */
+}
+
+.video-info h2 {
+    font-size: 45px; /* Reduce font size for better fit */
+    color: #fff; /* Professional blue */
+    margin-bottom: 20px;
+    background-color: #004080;
+    border-radius: 10px;
+}
+
+.video-info p {
+    font-size: 1.1rem; /* Reduce font size slightly */
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.video-info ul {
+    padding-left: 30px; /* Left padding for list */
+    list-style-type: disc; /* Adding disc style for better readability */
+}
+
+.video-info ul li {
+    margin-bottom: 10px;
+    text-align: justify; /* Ensure list items are justified */
+    color: #004080;
+}
+/* Section padding and background */
+.section-padding-3 {
+    padding: 60px 0;
+  }
+  
+  .community-engagement-section {
+    background: url('images/v996-010.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 60px 0;
+    color: #fff; /* Text color set to white for contrast */
+  }
+  
+  .section-header h3 {
+    font-size: 45px;
+    color: #00275e;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  .section-header p {
+    font-size: 16px;
+    color: #7a8fa6;
+    text-align: center;
+  }
+  
+  /* Engagement Flow Styling */
+  .engagement-flow {
+    margin-top: 40px;
+  }
+  
+  .engagement-box {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .engagement-number {
+    font-size: 24px;
+    color: #00275e;
+    background: #e3f1ff;
+    border-radius: 50%;
+    padding: 10px 20px;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+  
+  .engagement-icon img {
+    max-width: 60px;
+    margin-bottom: 20px;
+  }
+  
+  .engagement-box h5 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #00275e;
+    margin-bottom: 10px;
+  }
+  
+  .engagement-box p {
+    font-size: 14px;
+    color: #7a8fa6;
+  }
+  
+  .engagement-box:hover {
+    box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+  }  
+  .bg-image {
+    background-image: url('images/2d-graphic-wallpaper-with-colorful-grainy-gradients.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 60px 0;
+    color: white; /* Adjust the text color for better contrast */
+}
+
+.section-padding-4 {
+    padding-bottom: 100px;
+}
+.catfish-guide-section {
+    display: flex;
+    padding: 50px 0;
+}
+
+.guide-nav {
+    position: sticky;
+    top: 100px;
+}
+
+.nav-btn {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    margin-bottom: -5px; /* Remove spacing between buttons */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Create the staircase effect by adding offsets and different border colors */
+.nav-btn::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 50%;
+    width: 5px;
+    height: 100%;
+    background-color: #0056b3;
+    z-index: -1;
+    transform: translateY(-50%) skewY(-15deg); /* Slanted edge */
+}
+
+.nav-btn:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #0056b3;
+    z-index: -1;
+    transform: skewX(-15deg); /* Slanted bottom border */
+}
+
+/* Apply hover and active state colors with more contrast */
+.nav-btn:hover, .nav-btn.active {
+    background-color: #004080;
+}
+
+.nav-btn:hover::before, .nav-btn.active::before {
+    background-color: #003366;
+}
+
+.nav-btn:hover::after, .nav-btn.active::after {
+    background-color: #003366;
+}
+
+.guide-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.guide-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #333;
+    text-transform: uppercase;
+    position: relative;
+}
+
+/* Add a decorative underline to the title */
+.section-title::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: #007bff;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+.catfish-guide-section {
+    background-image: url('images/rm209-ning-16-a.jpg'); /* Ensure the background image is named correctly and placed in the right directory */
+    background-size: cover;
+    color: #fff; /* Adjust text color for visibility against a dark background */
+}
+.guide-content p{
+    font-size: 16px;
+}
+.cuisine-section {
+    background-color: #f9f9f9;
+    padding: 50px 0;
+  }
+  
+  .section-header {
+    margin-bottom: 40px;
+  }
+  
+  .line {
+    height: 2px;
+    width: 50px;
+    background-color: #007bff;
+    margin: 10px auto;
+  }
+  
+  .swiper-container {
+    width: 100%; /* Ensure full width */
+    overflow: hidden; /* Prevent overflow issues */
+    display: flex;
+    justify-content: center; /* Center the content */
+}
+  
+.swiper-wrapper {
+    display: flex;
+    justify-content: center; /* Center the slides inside the container */
+}
+  
+.swiper-slide {
+    flex-shrink: 0;
+    width: calc(33.33% - 20px); /* Each slide takes up 1/3 of the container, with some space for margins */
+    margin: 0 10px; /* Add spacing between slides */
+    box-sizing: border-box;
+}
+
+  /* Styling for the images */
+.test-img img {
+    width: 100%; /* Makes the image take full width of the container */
+    max-width: 250px; /* Enforces a max width to keep a consistent size */
+    height: 200px; /* Sets a fixed height to maintain uniformity */
+    object-fit: cover; /* Ensures the image fits the box and maintains its aspect ratio */
+    border-radius: 10px;
+  }
+  
+  .test-text {
+    margin-top: 15px;
+  }
+  
+  .test-text .title {
+    font-size: 16px;
+    color: #333;
+  }
+  
+.cuisine-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 30px; /* Add margin between the boxes */
+    max-width: 90%; /* Make sure it doesn't extend too much */
+    box-sizing: border-box; /* Ensure padding and borders are considered in the width */
+}
+  
+
+  .swiper-button-next, .swiper-button-prev {
+    color: #007bff;
+  }
+  .latest-products {
+	margin-top: 100px;
+}
+
+.latest-products .section-heading a {
+	float: right;
+	margin-top: -35px;
+	text-transform: uppercase;
+	font-size: 13px;
+	font-weight: 700;
+	color: #f33f3f;
+}
+
+/* Ensure each product item is square and fits 5 items in a row */
+.product-item {
+    width: 19%;                /* 5 items per row */
+    padding: 10px;
+    margin: 0.5%;              /* Small margin for spacing */
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    position: relative;        /* Enable absolute positioning for the price */
+    height: 250px;             /* Fixed height for square layout */
+  }
+  
+  .product-item img {
+    width: 100%;
+    height: 200px;               /* Make the image cover 70% of the item height */
+    object-fit: cover;         /* Ensure the image remains square */
+    border-radius: 5px;        /* Optional: round the corners slightly */
+  }
+  
+  /* New element for product name (simulated h9) */
+  .product-item h9 {
+    font-size: 14px;           /* Adjust size to simulate h9 */
+    margin: 5px 0 0 0;
+    text-align: center;
+  }
+  
+  /* New element for product price (simulated h10) */
+  .product-item h10 {
+    font-size: 16px;           /* Adjust size to simulate h10 */
+    font-weight: bold;
+    color: #333;
+    position: absolute;        /* Pin the price to the bottom */
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;        /* Center the price */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1200px) {
+    .product-item {
+      width: 24%;   /* Show 4 products per row on medium screens */
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .product-item {
+      width: 32%;   /* Show 3 products per row on smaller screens */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .product-item {
+      width: 48%;   /* Show 2 products per row on small screens */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .product-item {
+      width: 100%;  /* Full width (1 product per row) on very small screens */
+    }
+  }
+    
+/* Product Page */
+.products {
+	margin-top: 100px;
+}
+
+.products .filters {
+	text-align: center;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 10px;
+	margin-bottom: 60px;
+}
+
+.products .filters li {
+	text-transform: uppercase;
+	font-size: 13px;
+	font-weight: 700;
+	color: #121212;
+	display: inline-block;
+	margin: 0px 10px;
+	transition: all .3s;
+	cursor: pointer;
+}
+
+.products .filters ul li.active,
+.products .filters ul li:hover {
+  color: #f33f3f;
+}
+
+.products ul.pages {
+	margin-top: 30px;
+	text-align: center;
+}
+
+.products ul.pages li {
+	display: inline-block;
+	margin: 0px 2px;
+}
+
+.products ul.pages li a {
+	width: 44px;
+	height: 44px;
+	display: inline-block;
+	line-height: 42px;
+	border: 1px solid #eee;
+	font-size: 15px;
+	font-weight: 700;
+	color: #121212;
+	transition: all .3s;
+}
+
+.products ul.pages li a:hover,
+.products ul.pages li.active a {
+	background-color: #f33f3f;
+	border-color: #f33f3f;
+	color: #fff;
+}
+.product-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-form {
+    width: 50%;
+    padding: 20px;
+    border: 1px solid #007bff;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.field {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.btn-grad {
+    padding: 10px;
+    background: #007bff;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+p {
+    color: #000;
+    margin: 15px 30px; /* Adding margin around paragraphs */
+    text-align: justify; /* Justifies text alignment */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 10px 0 20px; /* Adding space above and below headers */
+}
+.video-info p, .video-info ul li {
+    text-align: justify;
+    margin-bottom: 20px;
+}
+.catfish-section .text-content {
+    width: 45%;
+    padding-left: 30px; /* Maintain this */
+    margin: 0 20px; /* Adding margin for better spacing */
+    text-align: justify; /* Justify the text */
+    font-size: 17px;
+}
+
+.catfish-section .text-content h2 {
+    margin-bottom: 20px; /* Space below the header */
+}
+
+.catfish-section .text-content ul li {
+    font-size: 1.1rem;
+    margin: 10px 0;
+    color: #004080;
+    text-align: justify; /* Ensure list items are justified too */
+}
+.catfish-section .image-container {
+    width: 50%;
+    margin: 0 30px; /* Adding some horizontal margin */
+}
+
+.catfish-section .main-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px; /* Adding margin below the main image */
+}
+.notification-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 20px;
+  }
+  #notificationBar {
+    position: absolute;
+    right: 20px;
+    top: 60px; /* Adjust according to your layout */
+    padding: 10px 20px;
+    background-color: yellow; /* Keep this for visibility */
+    color: black;
+    font-size: 14px;
+    border-radius: 5px;
+    display: none; /* Hidden initially */
+    z-index: 1000; /* Make sure it is above other elements */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a shadow for visibility */
+}
+  
+  .pending {
+    background-color: #fff3cd;
+    color: #856404;
+  }
+  
+  .verified {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  .rejected {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  #notificationButton {
+    width: 40px;   /* Adjust the width */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+  .empty {
+    background-color: #e2e3e5;
+    color: #6c757d;
+  }
+  .mb-4, .my-4 {
+    text-align: center;
+  }
+  .mb-3, .my-3 {
+    margin-bottom: 1rem !important;
+    text-align: justify;
+}
+.mt-4, .my-4 {
+    margin-top: 1.5rem !important;
+    text-align: center;
+}
+.logo-1{
+    height: 50px;
+  }

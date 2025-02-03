@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <!-- Font Google -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/login.css">
+  <title>Store Products</title>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js"></script>
+</head>
+<style>
+  body{
+    background: url('images/abstract-smooth-empty-grey-studio-well-use-as-background-business-report-digital-website-template-backdrop.jpg') no-repeat center center fixed;
+      background-size: cover;
+  }
+  .product-item img {
+  width: 100%;      /* Set image to take full width */
+  height: 225px;    /* Set a fixed height */
+  object-fit: cover; /* Maintain aspect ratio while covering */
+}
+
+.product-item {
+  height: 350px;    /* Set fixed height for the whole item */
+  width: 20%;
+  border: 1px solid #ccc;  /* Add border line around product card */
+  border-radius: 8px;      /* Optional: rounded corners */
+  padding: 0px;
+  margin-bottom: 20px;
+  text-align: left;        /* Align text to the left */
+  background-color: #ffffff71;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional: add shadow for better appearance */
+}
+.product-item h9{
+  color: rgb(122, 122, 122);
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.product-item h10 {
+    font-size: 15px;  
+    color: #333;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+  .down-content{
+    text-align: center;
+  }
+  .btn-grad {
+    padding: 0px;
+    background: #007bff;
+    border: none;
+    color: white;
+    border-radius: 0px;
+    cursor: pointer;
+    font-size: 0px;
+    width: 0%;
+    height: 0%;
+}
+  </style>
+<body>
+
+  <!-- Header -->
+  <header>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container-2 d-flex justify-content-between">
+<!-- Navbar Logo -->
+<a>     
+  <img src="images/hitovest-high-resolution-logo-transparent.png" alt="HITOVEST Logo" class="logo-1">
+</a>
+        <div class="collapse navbar-collapse justify-content-center">
+          <ul class="navbar-nav">
+            <li class="nav-item"> <a class="nav-link" href="index.html">Home</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="service-1.html">System Module</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="team.html">Team</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="dashboard.html">Dashboard</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="storage.html">Storage</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="contact.html">Contact</a> </li>
+            <li class="nav-item"> <a class="nav-link active" href="products.html">Store</a> </li>
+          </ul>
+        </div>
+        <div class="navbar-right">
+          <a id="loginLink" class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">LOGIN</a>
+        </div>    
+      </div>
+    </nav>
+  </header>
+
+  <!-- Store Products -->
+  <section class="about section-padding prelative">
+    <div class="col-md-12 text-center">
+      <h3>Store</h3>
+      <a href="add-product.html" id="startSellingButton" class="btn-grad">Start Selling</a>
+    </div>
+  </section>
+
+  <!-- Product Listings -->
+  <div class="products">
+    <div class="container">
+      <div class="row grid" id="productList">
+        <!-- Products will be dynamically inserted here -->
+      </div>
+    </div>
+  </div>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel"></h5>
+      </div>
+      <div class="modal-body login-modal">
+        <div class="wrapper">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div class="title">Login</div>
+          <form id="loginForm">
+            <div class="field">
+              <input type="email" id="email" required>
+              <label>Email Address</label>
+            </div>
+            <div class="field">
+              <input type="password" id="password" required>
+              <label>Password</label>
+            </div>
+            <div class="content">
+              <div class="checkbox">
+                <input type="checkbox" id="remember-me">
+                <label for="remember-me">Remember me</label>
+              </div>
+              <div class="pass-link">
+                <a href="#">Forgot password?</a>
+              </div>
+            </div>
+            <div class="field">
+              <button id="submitSignIn" class="submit-button">Login</button>
+            </div>
+            <div class="signup-link">
+              Not a member? <a href="#" data-toggle="modal" data-target="#signupModal" data-dismiss="modal">Signup now</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Signup Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="signupModalLabel"></h5>
+      </div>
+      <div class="modal-body login-modal">
+          <div class="wrapper">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+          <div class="title">Create Account</div>
+  
+  <!-- Role Buttons -->
+  <div class="role-selection text-center mb-4">
+    <button type="button" id="guestButton" class="btn role-button">Guest</button>
+    <button type="button" id="storeOwnerButton" class="btn role-button">Store Owner</button>
+    <button type="button" id="farmerButton" class="btn role-button">Farmer</button>
+  </div>
+  <input type="hidden" id="selectedRole" name="role" value="">
+          
+        <!-- Updated Features List -->
+        <div class="features-list text-center">
+          <ul>
+            <li id="feature1" class="feature-item">Grants access to add markers on Geomap.</li>
+            <li id="feature2" class="feature-item">Grants access to Geomap and add products on Store Page.</li>
+            <li id="feature3" class="feature-item">Grants access to Feed Manager, Forecast, Geomap, and Dashboard.</li>
+          </ul>
+        </div>
+          
+  
+          <form id="signupForm">
+              <div class="field">
+              <input type="text" id="username2" required>
+              <label>Username</label>
+              </div>
+              <div class="field">
+              <input type="email" id="email2" required>
+              <label>Email Address</label>
+              </div>
+              <div class="field">
+              <input type="password" id="password2" required>
+              <label>Password</label>
+              </div>
+              <div class="field">
+              <input type="password" id="confirmPassword2" required>
+              <label>Confirm Password</label>
+              </div>
+              <div class="field">
+              <button id="submitSignUp" class="submit-button">Sign Up</button>
+              </div>
+              <div class="signin-link">
+              Already a Member? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">Sign In</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const buttons = {
+      Guest: document.getElementById("guestButton"),
+      StoreOwner: document.getElementById("storeOwnerButton"),
+      Farmer: document.getElementById("farmerButton"),
+    };
+  
+    const featureElements = document.querySelectorAll(".feature-item");
+  
+    // Clear all highlights
+    function clearHighlights() {
+      featureElements.forEach((feature) => feature.classList.remove("feature-highlight"));
+    }
+  });
+  
+  document.addEventListener("DOMContentLoaded", () => {
+      // Role Buttons
+      const roleButtons = {
+          Guest: document.getElementById("guestButton"),
+          StoreOwner: document.getElementById("storeOwnerButton"),
+          Farmer: document.getElementById("farmerButton"),
+      };
+  
+      // Feature List Items
+      const featureItems = {
+          Guest: document.getElementById("feature1"),
+          StoreOwner: document.getElementById("feature2"),
+          Farmer: document.getElementById("feature3"),
+      };
+  
+      const selectedRoleInput = document.getElementById("selectedRole");
+  
+      // Helper function to clear highlights
+      function clearHighlights() {
+          Object.values(featureItems).forEach(item => item.classList.remove("feature-highlight"));
+      }
+  
+      // Add click event listeners to each role button
+      Object.keys(roleButtons).forEach(role => {
+          roleButtons[role].addEventListener("click", () => {
+              clearHighlights();
+              featureItems[role].classList.add("feature-highlight");
+              selectedRoleInput.value = role;
+          });
+      });
+  });
+  </script>
+  
+  <!-- Firebase SDKs and Script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+    import { getFirestore, collection, getDocs, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBHKPP96j8T_ZDh2SeXH2dR1fU7dx5fXVc",
+      authDomain: "login2-bbcac.firebaseapp.com",
+      projectId: "login2-bbcac",
+      storageBucket: "login2-bbcac.appspot.com",
+      messagingSenderId: "355293344565",
+      appId: "1:355293344565:web:58022c1d4e78566ab2527c"
+    };
+
+  // Add event listener to the Start Selling button
+  document.getElementById("startSellingButton").addEventListener("click", function(event) {
+    event.preventDefault(); // Prevent default button behavior
+
+    // Check if the user is logged in
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is logged in, now check their business verification status
+        const businessDocRef = doc(db, "businessInfo", user.uid);
+
+        getDoc(businessDocRef).then((docSnapshot) => {
+          if (docSnapshot.exists()) {
+            const businessData = docSnapshot.data();
+            const verificationStatus = businessData.verificationStatus;
+
+            if (verificationStatus === "Verified") {
+              // Redirect to add-product page if the business is verified
+              window.location.href = "add-product.html";
+            } else if (verificationStatus === "Pending") {
+              alert("Your business verification is pending. Please wait for approval.");
+            } else {
+              alert("Your business verification was rejected. Please update your business information.");
+              window.location.href = "business-info.html"; // Redirect to business info page if rejected
+            }
+          } else {
+            alert("No business information found. Please submit your business details first.");
+            window.location.href = "business-info.html"; // Redirect to business info page if no business data
+          }
+        }).catch((error) => {
+          console.error("Error fetching business info:", error);
+          alert("Error retrieving business information. Please try again later.");
+        });
+      } else {
+        // User is not logged in, show login modal
+        alert("You need to log in to start selling.");
+        $('#loginModal').modal('show'); // Show login modal if user is not logged in
+      }
+    });
+  });
+
+  // Initialize Firebase for SignUp
+  const app = initializeApp(firebaseConfig);
+  const signUp = document.getElementById("submitSignUp");
+    signUp.addEventListener('click', (event) => {
+        event.preventDefault();
+        const username = document.getElementById('username2').value;
+        const email = document.getElementById('email2').value;
+        const password = document.getElementById('password2').value;
+        const confirmPassword = document.getElementById('confirmPassword2').value;
+        const role = document.getElementById('selectedRole').value;
+
+        if (!role) {
+        alert("Please select a role before signing up.");
+        return;
+      }
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+      }
+  
+      const auth = getAuth();
+      const db = getFirestore();
+  
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        const userData = {
+            username: username,
+            email: email,
+            role: role,
+        }
+        const docRef = doc(db, "users", user.uid);
+        // Redirect to the login page after successful signup
+        setDoc(docRef,userData)
+        .then(() => {
+        alert("User created successfully!");
+        $('#signupModal').modal('hide');  // Hide the SignUp modal
+        location.reload();
+      })
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorMessage);
+    })
+  });
+
+// Initialize Firebase for Login
+const signIn = document.getElementById("submitSignIn");
+  signIn.addEventListener('click', (event) => {
+    event.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const auth = getAuth();
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        alert('User logged in!');
+        // Redirect to the dashboard page after successful login
+        localStorage.setItem('loggedInUserId', user.uid);
+        window.location.href = "index.html";
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      alert(errorMessage);
+    });
+  });
+
+  // Initialize Firebase for Logout
+  const auth = getAuth();
+  const db = getFirestore();
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const loginLink = document.getElementById('loginLink');
+    const featureButtons = document.querySelectorAll('.feature-button');
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        loginLink.textContent = 'Logout';
+        loginLink.href = '#';
+        loginLink.onclick = (event) => {
+          event.preventDefault();
+          signOut(auth).then(() => {
+            console.log('User signed out.');
+            window.location.reload();
+          }).catch((error) => {
+            console.error('Sign out error:', error);
+          });
+        };
+        featureButtons.forEach(button => {
+              button.disabled = false;
+              button.onclick = null;  // Remove any previous click event
+            });
+      } else {
+        loginLink.textContent = 'Login';
+        loginLink.href = '#';  // Prevent default navigation
+        loginLink.onclick = (event) => {
+          event.preventDefault();  // Prevent default behavior
+          $('#loginModal').modal('show');  // Trigger the login modal
+        };
+
+        featureButtons.forEach(button => {
+          button.disabled = false;  // Allow button to be clickable for redirection
+          button.onclick = (event) => {
+            event.preventDefault();
+            $('#loginModal').modal('show');  // Trigger the login modal
+          }
+        })
+      }
+    })
+  });
+
+  const fetchProducts = async () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const storeId = urlParams.get("storeId"); // Get storeId from URL
+
+  if (!storeId) {
+    alert("No store selected.");
+    return;
+  }
+
+  const productList = document.getElementById("productList");
+  productList.innerHTML = ''; // Clear existing products
+
+  // Fetch products where `sellerId` matches the storeId (which is actually user.uid)
+  const querySnapshot = await getDocs(collection(db, "products"));
+  
+  querySnapshot.forEach((doc) => {
+    const product = doc.data();
+
+    if (product.sellerId === storeId) { // Only show products from this store
+      const productElement = `
+        <div class="product-item">
+          <a href="product-details.html?id=${doc.id}">
+            <img src="${product.productImages[0]}" alt="Product Image">
+          </a>
+          <div class="down-content">
+            <a href="product-details.html?id=${doc.id}">
+              <h9>${product.productName}</h9>
+            </a>
+            <h10>₱${product.productPrice}</h10>
+          </div>
+        </div>
+      `;
+      productList.insertAdjacentHTML("beforeend", productElement);
+    }
+  });
+};
+
+document.addEventListener("DOMContentLoaded", fetchProducts);
+
+  // Initialize product fetch
+  document.addEventListener("DOMContentLoaded", fetchProducts);    
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const auth = getAuth();
+    const db = getFirestore();
+    const dashboardLink = document.querySelector('.nav-link[href="dashboard.html"]');
+
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            if (userDoc.exists()) {
+                const userData = userDoc.data();
+                dashboardLink.addEventListener("click", (event) => {
+                    if (userData.role !== "Farmer") {
+                        event.preventDefault();
+                        alert("Access denied. Only Farmers can view the Dashboard.");
+                    }
+                });
+            }
+        } else {
+            // If not logged in, block access
+            dashboardLink.addEventListener("click", (event) => {
+                event.preventDefault();
+                alert("Please log in to access the Dashboard.");
+            });
+        }
+    });
+});
+
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

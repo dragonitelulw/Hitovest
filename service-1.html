@@ -1,0 +1,2299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>About Us - Hitovest</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  <!-- Font Google -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+  </head>
+  <style>
+    #dfa-content {
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #b0eacd;
+}
+    .nav-bar {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        background: transparent;
+    }
+    .nav-bar button {
+        background-color: transparent;
+        color: #fff;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        padding: 12px 24px;
+        margin: 0 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+        border-bottom: 3px solid transparent;
+    }
+    .nav-bar button:hover, .nav-bar button.active {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-color: #fff;
+    }
+    .calculator-container {
+        width: 100%;
+        max-width: 1200px;
+        display: none; /* Initially hide all calculators */
+        margin: 0 auto;
+    }
+    #calculator-dfa {
+        display: block; /* Show the DFA calculator by default */
+    }
+    .calculator {
+        background-color: #fff;
+        color: #333;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+    }
+    .calculator h2 {
+        margin-top: 0;
+        color: #00796b;
+        font-size: 24px;
+        border-bottom: 2px solid #00796b;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+    .calculator input[type="number"] {
+        width: calc(100% - 24px);
+        padding: 12px;
+        margin: 8px 0;
+        text-align: center;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
+        color: #333;
+        -moz-appearance: textfield;
+        appearance: textfield; 
+    }
+    .calculator input[type="text"] {
+        width: calc(100% - 24px);
+        padding: 12px;
+        margin: 8px 0;
+        text-align: center;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
+        color: #333;
+        -moz-appearance: textfield;
+        appearance: textfield;
+    }
+    .calculator input[type="number"]::-webkit-outer-spin-button,
+    .calculator input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    .calculator input[type="number"]:focus {
+        outline: none;
+        border-color: #00796b;
+    }
+    .calculator label {
+        display: block;
+        text-align: left;
+        margin-bottom: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #555;
+    }
+    .calculator .input-group {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .calculator .input-group input[type="number"] {
+        width: calc(50% - 12px);
+        margin-right: 8px;
+    }
+    .calculator button {
+        background-color: #00796b;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+    .calculator button:hover {
+        background-color: #005b4f;
+    }
+    .result-container {
+        background-color: #e0e0e0;
+        border-radius: 4px;
+        padding: 10px;
+        margin-top: 20px;
+        text-align: left;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .result {
+        font-size: 18px;
+        color: #333;
+    }
+    /* Surrounding colors */
+    .profit-input-container {
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 16px;
+    }
+    .cost-input-container {
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 16px;
+    }
+    /* Backlog styles */
+    .backlog-container {
+        display: none;
+        background-color: #f8f8f8;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 20px;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+    .backlog-item {
+        font-size: 14px;
+        margin-bottom: 10px;
+        color: #555;
+    }
+    .backlog-button {
+        position: absolute;
+        top: 1015px;
+        right: 10px;
+        background-color: #00796b;
+        color: white;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+    }
+    .backlog-button:hover {
+        background-color: #005b4f;
+    }
+    /* Styles for the active calculator */
+    .active-calculator {
+        display: block !important;
+    }
+            /* General Styling for Select Elements (Combobox) */
+    .styled-select {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #fff;
+        margin-bottom: 15px;
+        appearance: none; /* Removes default arrow in some browsers */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: border-color 0.3s ease;
+    }
+
+    /* Additional styling to make ComboBox more noticeable */
+    .noticeable-select {
+        background-color: #f0f8ff; /* Slightly blue background */
+        border: 1px solid #00796b; /* Greenish border */
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij48cGF0aCBkPSJNNC44NjYgNi4zMzNsMy4xMzQtMy4xMzQgMy4xMzQgMy4xMzRjLjQzLjQzLjEyNSAxLjE3NS0uNDg2IDEuMTc1SDUuMzUyeiIvPjwvc3ZnPg==');
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 12px;
+    }
+
+    .styled-select:focus {
+        border-color: #00796b;
+        outline: none;
+    }
+
+    .styled-select:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Improved Layout for Multiple Textboxes */
+    #stockInputsContainer {
+        display: flex;
+        flex-wrap: wrap; /* Allows wrapping of textboxes to new line */
+        gap: 10px; /* Adds space between textboxes */
+    }
+
+    #stockInputsContainer input {
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #stockInputsContainer input:focus {
+        border-color: #00796b;
+        outline: none;
+    }
+    /* Styling for the entire container */
+    .cost-input-container {
+        margin-bottom: 20px;
+    }
+
+    /* Grid layout to align the Quantity and Price inputs */
+    .input-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Two equal columns */
+        gap: 20px; /* Space between columns */
+    }
+
+    /* Ensure each label-input pair stacks properly */
+    .input-wrapper {
+        display: flex;
+    }
+
+    .input-wrapper label {
+        font-weight: bold;
+        margin-bottom: 6px;
+    }
+
+    .input-wrapper input {
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Additional styling for input focus effect */
+    .input-wrapper input:focus {
+        border-color: #00796b;
+        outline: none;
+        box-shadow: 0 2px 8px rgba(0, 121, 107, 0.3); /* Slight shadow on focus */
+    }
+    .calculator-layout {
+        display: flex;
+        gap: 20px; /* Space in the middle, for open-book effect */
+    }
+
+    .calculator {
+        width: 50%; /* Adjust size to fit half the screen */
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-section {
+        width: 50%;
+        background-color: #f8f8f8;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        max-height: none; /* Remove any max-height limit */
+        overflow-y: visible; /* Allow the content to dictate the height */
+        margin-bottom: 0; /* Remove any margin that adds extra space */
+    }
+
+    .info-content {
+        max-height: none; /* Remove any height limits */
+        margin-bottom: 0; /* Ensure no extra margin at the bottom */
+        overflow-y: visible; /* Ensure no scrolling unless necessary */
+    }
+
+    .info-section h3 {
+        margin-top: 0;
+        font-size: 22px;
+        color: #00796b;
+    }
+
+    .info-section p {
+        margin: 10px 0;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .calculator-layout {
+        display: flex;
+        gap: 20px; /* Space between the calculator and the info section */
+        align-items: flex-start; /* Align content to the top to avoid gaps */
+    }
+form {
+display: block;
+margin-top: 0em;
+unicode-bidi: isolate;
+background-color: aliceblue;
+}
+
+.geo-section {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #ffcdc1;
+            background-size: cover;
+            color: #333;
+}
+
+.geo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#map {
+    height: 600px;
+    width: 50%;
+    margin-top: 170px;
+}
+.checklist {
+    position: absolute;
+    top: 1120px;
+    left: 1210px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+.checklist label {
+    display: block;
+    margin-bottom: 5px;
+}
+        .checklist input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        .popup-image {
+            width: 100px;
+            height: auto;
+        }
+        /* Add marker button */
+        .add-marker-button {
+            position: absolute;
+            top: 955px;
+            right: 20px;
+        }
+        .add-marker-button button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+.forecast-section{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('images/9957926.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative; /* To position the back button */
+        }
+
+        .forecast-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .calculator-container1 {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            max-width: 500px;
+            margin: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator1 {
+            background-color: #ffffff;
+            color: #000;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .calculator1 h2 {
+            margin-top: 0;
+            color: #007bff;
+            font-size: 24px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+
+        .calculator1 input[type="number"], .calculator1 input[type="text"], .calculator1 input[type="float"] {
+            width: calc(100% - 24px);
+            padding: 12px;
+            margin: 8px 0;
+            text-align: center;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+            background-color: #fffcfc;
+            color: #000000;
+        }
+        
+        .calculator1 input[type="number"]:focus, .calculator1 input[type="text"]:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .calculator1 label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .calculator1 button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .calculator1 button:hover {
+            background-color: #0056b3;
+        }
+
+        .result1 {
+            font-size: 18px;
+            margin-top: 20px;
+            text-align: left;
+            color: #333;
+        }
+        
+        /* Information section */
+        .info-section1 {
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+            max-width: 500px;
+            text-align: left;
+        }
+
+        .info-section1 h3 {
+            margin-top: 0;
+            font-size: 22px;
+            color: #007bff;
+        }
+
+        .info-section1 p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .calculator1, .info-section1 {
+                width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+</style>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container-2 d-flex justify-content-between">
+<!-- Navbar Logo -->
+<a>     
+  <img src="images/hitovest-high-resolution-logo-transparent.png" alt="HITOVEST Logo" class="logo-1">
+</a>
+
+    <!-- Navigation Links -->
+    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <li class="nav-item"> <a class="nav-link" href="index.html">Home</a> </li>
+        <li class="nav-item"> <a class="nav-link active" href="service-1.html">System Module</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="team.html">Team</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="dashboard.html">Dashboard</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="storage.html">Storage</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="contact.html">Contact</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="products.html">Store</a> </li>
+      </ul>
+    </div>
+
+    <!-- Login/Logout Button -->
+    <div class="navbar-right">
+      <a id="loginLink" class="nav-link btn-soft-rectangle" href="#" data-toggle="modal" data-target="#loginModal">LOGIN</a>
+    </div>
+  </div>
+</nav>
+<!-- End Navbar -->
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel"></h5>
+        </div>
+        <div class="modal-body login-modal">
+          <div class="wrapper">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="title">Login</div>
+            <form id="loginForm">
+              <div class="field">
+                <input type="email" id="email" required>
+                <label>Email Address</label>
+              </div>
+              <div class="field">
+                <input type="password" id="password" required>
+                <label>Password</label>
+              </div>
+              <div class="content">
+                <div class="checkbox">
+                  <input type="checkbox" id="remember-me">
+                  <label for="remember-me">Remember me</label>
+                </div>
+                <div class="pass-link">
+                  <a href="#">Forgot password?</a>
+                </div>
+              </div>
+              <div class="field">
+                <button id="submitSignIn" class="submit-button">Login</button>
+              </div>
+              <div class="signup-link">
+                Not a member? <a href="#" data-toggle="modal" data-target="#signupModal" data-dismiss="modal">Signup now</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<!-- Signup Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="signupModalLabel"></h5>
+    </div>
+    <div class="modal-body login-modal">
+        <div class="wrapper">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="title">Create Account</div>
+
+<!-- Role Buttons -->
+<div class="role-selection text-center mb-4">
+  <button type="button" id="guestButton" class="btn role-button">Guest</button>
+  <button type="button" id="storeOwnerButton" class="btn role-button">Store Owner</button>
+  <button type="button" id="farmerButton" class="btn role-button">Farmer</button>
+</div>
+<input type="hidden" id="selectedRole" name="role" value="">
+        
+      <!-- Updated Features List -->
+      <div class="features-list text-center">
+        <ul>
+          <li id="feature1" class="feature-item">Grants access to add markers on Geomap.</li>
+          <li id="feature2" class="feature-item">Grants access to Geomap and add products on Store Page.</li>
+          <li id="feature3" class="feature-item">Grants access to Feed Manager, Forecast, Geomap, and Dashboard.</li>
+        </ul>
+      </div>
+        
+
+        <form id="signupForm">
+            <div class="field">
+            <input type="text" id="username2" required>
+            <label>Username</label>
+            </div>
+            <div class="field">
+            <input type="email" id="email2" required>
+            <label>Email Address</label>
+            </div>
+            <div class="field">
+            <input type="password" id="password2" required>
+            <label>Password</label>
+            </div>
+            <div class="field">
+            <input type="password" id="confirmPassword2" required>
+            <label>Confirm Password</label>
+            </div>
+            <div class="field">
+            <button id="submitSignUp" class="submit-button">Sign Up</button>
+            </div>
+            <div class="signin-link">
+            Already a Member? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">Sign In</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const buttons = {
+    Guest: document.getElementById("guestButton"),
+    StoreOwner: document.getElementById("storeOwnerButton"),
+    Farmer: document.getElementById("farmerButton"),
+  };
+
+  const featureElements = document.querySelectorAll(".feature-item");
+
+  // Clear all highlights
+  function clearHighlights() {
+    featureElements.forEach((feature) => feature.classList.remove("feature-highlight"));
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Role Buttons
+    const roleButtons = {
+        Guest: document.getElementById("guestButton"),
+        StoreOwner: document.getElementById("storeOwnerButton"),
+        Farmer: document.getElementById("farmerButton"),
+    };
+
+    // Feature List Items
+    const featureItems = {
+        Guest: document.getElementById("feature1"),
+        StoreOwner: document.getElementById("feature2"),
+        Farmer: document.getElementById("feature3"),
+    };
+
+    const selectedRoleInput = document.getElementById("selectedRole");
+
+    // Helper function to clear highlights
+    function clearHighlights() {
+        Object.values(featureItems).forEach(item => item.classList.remove("feature-highlight"));
+    }
+
+    // Add click event listeners to each role button
+    Object.keys(roleButtons).forEach(role => {
+        roleButtons[role].addEventListener("click", () => {
+            clearHighlights();
+            featureItems[role].classList.add("feature-highlight");
+            selectedRoleInput.value = role;
+        });
+    });
+});
+</script>
+
+<!-------About Start------->
+<section class="about section-padding prelative">
+<div class="col-md-12">
+  <div class="sectioner-header text-center">
+    <h3>System Module</h3>
+    <span class="line"></span>
+  </div>
+</section>
+<!-------About End-------> 
+
+<!-- Features Section Start -->
+<section class="features section-padding prelative">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-header text-center">
+          </div>
+          <div class="section-content text-center">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="icon-box wow fadeInUp" data-wow-delay="0.2s">
+                  <button class="feature-button" id="forecastButton"><i class="fa fa-bolt" aria-hidden="true"></i></button>
+                  <h5>Forecast</h5>
+                  <p>Hitovest can predict your harvest time for your catfish farm.</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="icon-box wow fadeInUp" data-wow-delay="0.4s">
+                  <button class="feature-button" id="feedManagerButton">
+                    <i class="fa fa-mobile" aria-hidden="true"></i>
+                  </button> 
+                  <h5>Feed Manager</h5>
+                  <p>Manages your feed and recommends suitable feed.</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="icon-box wow fadeInUp" data-wow-delay="0.6s">
+                  <button class="feature-button" id="geomapButton">
+                    <i class="fa fa-bolt" aria-hidden="true"></i>
+                  </button>
+                  <h5>Geolocation</h5>
+                  <p>Locates available catfish farms.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- Features Section End -->
+
+<!-- Forecast Feature Section (Initially Hidden) -->
+<div id="forecast-content" class="forecast-section" style="display: none;">
+  <div class="forecast-wrapper">
+                <!-- Information Section -->
+                <div class="info-section1">
+                  <h3>Important Information</h3>
+                  <p><strong>Water Temperature:</strong> The optimal water temperature for fish growth.</p>
+                  <p><strong>Water PH Level:</strong> Ideal pH level for the fish's habitat.</p>
+                  <p><strong>Population:</strong> Number of fish in the given area.</p>
+                  <p><strong>Feed Amount:</strong> The daily amount of feed provided to the fish.</p>
+                  <p><strong>Land Area:</strong> The size of the land in hectares where the fish are kept.</p>
+                  <p><strong>Feed Type:</strong> The type of feed used, which affects growth rates.</p>
+              </div>
+
+   <div class="calculator-container1">
+      <div class="calculator1">
+          <h2>Fish Weight Prediction</h2>
+          <form action="/predict" method="post">
+              <label for="TEMP">Water Temperature (°C):</label>
+              <input type="float" id="TEMP" name="TEMP" placeholder="Fetching..." readonly><br>
+            
+              <label for="W_PH">Water PH Level:</label>
+              <input type="float" id="W_PH" name="W_PH" placeholder="Fetching..." readonly><br>
+            
+              <label for="STOCK">Population:</label>
+              <input type="number" id="STOCK" name="STOCK" placeholder="Enter population" required><br>
+
+              <label for="FEEDS">Feed Amount (kg/day):</label>
+              <input type="number" id="FEEDS" name="FEEDS" placeholder="Enter feed amount" required><br>
+
+              <label for="LAND">Land Area (sqm):</label>
+              <input type="float" id="LAND" name="LAND" placeholder="Enter land area" required><br>
+
+              <label for="FEEDTYPE">Feed Type:</label>
+              <select id="FEEDTYPE" name="FEEDTYPE" required>
+                  <option value="" disabled selected>Select feed type</option>
+                  <option value="FISH INTESTINES">FISH INTESTINES</option>
+                  <option value="CHICKEN">CHICKEN</option>
+                  <option value="PELLETS">PELLETS</option>
+              </select><br>
+              
+            <button type="button" onclick="generatePrediction()">Predict</button>
+            <div class="text-center mt-4">
+                <h2>Predicted Weight:</h2>
+                <h3 class="text-info" id="predictedWeight">---</h3>
+            </div>
+              <!--button type="submit">Predict</button>
+              <div class="text-center mt-4">
+                <h2>Predicted Weight:</h2>
+                <h3 class="text-info">123</h3>
+            </div-->
+          </form>
+      </div>
+  </div>
+ 
+              </div>
+          </form>
+          <!-----
+          {% if prediction %}
+              <div class="text-center mt-4">
+                  <h2>Predicted Weight:</h2>
+                  <h3 class="text-info">{{ prediction }}</h3>
+              </div>
+          {% endif %}
+          --->
+      </div>
+  </div>
+</div>
+
+<script>
+  // Show/Hide the Forecast Content Section
+  const forecastButton = document.getElementById('forecastButton');
+  const forecastContent = document.getElementById('forecast-content');
+
+  forecastButton.addEventListener('click', function (event) {
+    event.preventDefault();
+    forecastContent.style.display = forecastContent.style.display === 'none' ? 'block' : 'none';
+  });
+</script>
+ 
+<!-- Geo Mapping Content Section (Initially Hidden) -->
+<div id="geo-content" class="geo-section" style="display: none;">
+  <div class="geo-wrapper">
+  <!-- Map Container -->
+  <div id="map"></div>
+
+  <!-- Checklist for Markers -->
+  <div class="checklist">
+      <label><input type="checkbox" id="red-checkbox" checked> Show Fish Supply Shops</label>
+      <label><input type="checkbox" id="blue-checkbox" checked> Show Catfish Ponds</label>
+      <label><input type="checkbox" id="green-checkbox" checked> Show Fingerlings Shop</label>
+  </div>
+
+  <!-- Add Marker Button -->
+  <div class="add-marker-button">
+      <button id="add-marker">Add Marker</button>
+  </div>
+</div>
+</div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      // Initialize the map
+      var map = L.map('map').setView([14.436460493026752, 121.46129967022384], 13);
+
+// Add OpenStreetMap tile layer
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Â© OpenStreetMap contributors'
+}).addTo(map);
+
+// Marker groups by color
+var redMarkers = [];
+var blueMarkers = [];
+var greenMarkers = [];
+
+// Create marker icons with different colors
+var redIcon = new L.Icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+    iconSize: [32, 32]
+});
+
+var blueIcon = new L.Icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+    iconSize: [32, 32]
+});
+
+var greenIcon = new L.Icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png',
+    iconSize: [32, 32]
+});
+
+// Add Red Markers with popups
+//redMarkers.push(L.marker([14.426559608944522, 121.44961823779798], { icon: redIcon })
+//    .bindPopup(`
+//        <b><a href="#" onclick="openShopPopup('Fish Feed Shop 1')">Fish Feed Shop 1</a></b><br>
+//        <img src="https://via.placeholder.com/100" class="popup-image">
+//    `)
+//    .addTo(map));
+redMarkers.push(L.marker([14.416179912066978, 121.44594370094696], { icon: redIcon })
+    .bindPopup(`
+        <b><a href="#" onclick="openShopPopup1('Razon Fishing Supply')">Razon Fishing Supply</a></b><br>
+        <img src="images/shop1.jpg" class="popup-image">
+        <b>Address: J.P Rizal Siniloan, Laguna</b>
+    `)
+    .addTo(map));
+
+// Add Blue Markers with popups
+blueMarkers.push(L.marker([14.432570757144351, 121.46740089089941], { icon: blueIcon })
+    .bindPopup(`
+        <b><a href="#" onclick="openPondPopup1('Eric Isorena Pond')">Eric Isorena Pond</a></b><br>
+        <img src="images/fishpond1.jfif" class="popup-image">
+         <b>Address: Adricula St. Brgy. M. Pandeno Siniloan, Laguna</b>
+    `)
+    .addTo(map));
+blueMarkers.push(L.marker([14.429744590851298, 121.479932171107351], { icon: blueIcon })
+.bindPopup(`
+        <b><a href="#" onclick="openPondPopup2('Catfish Pond 2')">Catfish Pond 2</a></b><br>
+        <img src="images/fishpond2.jfif" class="popup-image">
+    `)
+    .addTo(map));
+blueMarkers.push(L.marker([14.423344022797934, 121.45469794932306], { icon: blueIcon })
+.bindPopup(`
+        <b><a href="#" onclick="openPondPopup3('Nemi Rodriguez)">Nemi Rodriguez Catfish Pond </a></b><br>
+        <img src="images/fishpond3.jfif" class="popup-image">
+    `)
+    .addTo(map));
+blueMarkers.push(L.marker([14.411872414822703, 121.44929061608266], { icon: blueIcon })
+.bindPopup(`
+        <b><a href="#" onclick="openPondPopup4('Eduardo Tibay')">Eduardo Tibay Catfish Pond </a></b><br>
+        <img src="images/fishpond4.jfif" class="popup-image">
+        <b>Address M. Pandeno Siniloan, Laguna </b>
+    `)
+    .addTo(map));
+
+// Add Green Markers with popups
+greenMarkers.push(L.marker([14.430825188051793, 121.4528525895664], { icon: greenIcon })
+    .bindPopup(`
+        <b><a href="#" onclick="openShopPopup('Jun's Hitoan')">Fingerlings Shop Jun's Hitoan</a></b><br>
+        <img src="https://via.placeholder.com/100" class="popup-image">
+         <b>Address Brgy. Babuyan  Sta Cruz, Laguna </b>
+    `)
+    .addTo(map));
+greenMarkers.push(L.marker([14.427832752106474, 121.44761691769874], { icon: greenIcon })
+.bindPopup(`
+        <b><a href="#" onclick="openShopPopup('Fingerlings Shop 2')">Fingerlings Shop 2</a></b><br>
+        <img src="https://via.placeholder.com/100" class="popup-image">
+    `)
+    .addTo(map));
+
+// Function to toggle markers
+function toggleMarkers(color, show) {
+    var markers = [];
+    if (color === 'red') markers = redMarkers;
+    if (color === 'blue') markers = blueMarkers;
+    if (color === 'green') markers = greenMarkers;
+
+    markers.forEach(function(marker) {
+        if (show) {
+            map.addLayer(marker);
+        } else {
+            map.removeLayer(marker);
+        }
+    });
+}
+
+// Add event listeners to checkboxes
+document.getElementById('red-checkbox').addEventListener('change', function() {
+    toggleMarkers('red', this.checked);
+});
+
+document.getElementById('blue-checkbox').addEventListener('change', function() {
+    toggleMarkers('blue', this.checked);
+});
+
+document.getElementById('green-checkbox').addEventListener('change', function() {
+    toggleMarkers('green', this.checked);
+});
+
+// Initially show all markers
+toggleMarkers('red', true);
+toggleMarkers('blue', true);
+toggleMarkers('green', true);
+
+// Add marker functionality
+var isAddingMarker = false;
+var currentIcon = blueIcon; // Default marker icon
+
+document.getElementById('add-marker').addEventListener('click', function() {
+    isAddingMarker = !isAddingMarker;
+    this.textContent = isAddingMarker ? "Click on the map to add marker" : "Add Marker";
+});
+
+map.on('click', function(e) {
+    if (isAddingMarker) {
+        var newMarker = L.marker([e.latlng.lat, e.latlng.lng], { icon: currentIcon }).addTo(map)
+            .bindPopup('<b>New Farm</b><br>Lat: ' + e.latlng.lat + '<br>Lng: ' + e.latlng.lng);
+        newMarker.openPopup();
+        isAddingMarker = false;
+        document.getElementById('add-marker').textContent = "Add Marker";
+    }
+});
+
+// Show/Hide the Geolocation Section
+const geomapButton = document.getElementById('geomapButton');
+const geoContent = document.getElementById('geo-content');
+
+geomapButton.addEventListener('click', function (event) {
+    event.preventDefault();
+    geoContent.style.display = geoContent.style.display === 'none' ? 'block' : 'none';
+
+    if (geoContent.style.display === 'block') {
+        setTimeout(() => map.invalidateSize(), 0); // Recalculate map dimensions after it's visible
+    }
+});
+});
+</script>
+
+<script>
+  // Function to open a new popup window with shop details
+  function openShopPopup(shopName) {
+      var popupWindow = window.open("", shopName, "width=400,height=400");
+      popupWindow.document.write(`
+          <html>
+              <head><title>` + shopName + `</title></head>
+              <body>
+                  <h1>` + shopName + `</h1>
+                  <p>Welcome to ` + shopName + `! Here's more information about this location.</p>
+                  <img src="https://via.placeholder.com/100" alt="Fish Feed Shop Image">
+                  <p>Location: 14.416179912066978, 121.44594370094696</p>
+              </body>
+          </html>
+      `);
+  }
+  function openShopPopup1(shopName) {
+      var popupWindow = window.open("", shopName, "width=400,height=400");
+      popupWindow.document.write(`
+          <html>
+              <head><title>` + shopName + `</title></head>
+              <body>
+                  <h1>` + shopName + `</h1>
+                  <p>Welcome to ` + shopName + `! Here's more information about this location.</p>
+                  <img src="images/shop1.jpg" alt="Fish Feed Shop Image" style="width: 50%; height: auto;">
+                  <p>Address: 14.416179912066978, 121.44594370094696</p>
+              </body>
+          </html>
+      `);
+  }
+  function openPondPopup1(shopName) {
+  var popupWindow = window.open("", shopName, "width=400,height=400");
+  popupWindow.document.write(`
+      <html>
+          <head><title>` + shopName + `</title></head>
+          <body>
+              <h1>` + shopName + `</h1>
+              <p>Welcome to ` + shopName + `! Here's more information about this location.</p>
+              <img src="images/fishpond1.jfif" alt="Fish Feed Shop Image" style="width: 50%; height: auto;">
+              <p>Location: 14.416179912066978, 121.44594370094696</p>
+          </body>
+      </html>
+  `);
+}
+function openPondPopup2(shopName) {
+  var popupWindow = window.open("", shopName, "width=400,height=400");
+  popupWindow.document.write(`
+      <html>
+          <head><title>` + shopName + `</title></head>
+          <body>
+              <h1>` + shopName + `</h1>
+              <p>Welcome to ` + shopName + `! Here's more information about this location.</p>
+              <img src="images/fishpond2.jfif" alt="Fish Feed Shop Image" style="width: 50%; height: auto;">
+              <p>Location: 14.416179912066978, 121.44594370094696</p>
+          </body>
+      </html>
+  `);
+}
+function openPondPopup3(shopName) {
+  var popupWindow = window.open("", shopName, "width=400,height=400");
+  popupWindow.document.write(`
+      <html>
+          <head><title>` + shopName + `</title></head>
+          <body>
+              <h1>` + shopName + `</h1>
+              <p>Welcome to ` + shopName + `! Here's more information about this location.</p>
+              <img src="images/fishpond3.jfif" alt="Fish Feed Shop Image" style="width: 50%; height: auto;">
+              <p>Location: 14.416179912066978, 121.44594370094696</p>
+          </body>
+      </html>
+  `);
+}
+function openPondPopup4(shopName) {
+  var popupWindow = window.open("", shopName, "width=400,height=400");
+  popupWindow.document.write(`
+      <html>
+          <head><title>` + shopName + `</title></head>
+          <body>
+              <h1>` + shopName + `</h1>
+              <p>Welcome to ` + shopName + `! Here's more information about this location.</p>
+              <img src="images/fishpond4.jfif" alt="Fish Feed Shop Image" style="width: 50%; height: auto;">
+              <p>Location: 14.416179912066978, 121.44594370094696</p>
+          </body>
+      </html>
+  `);
+}
+</script>
+
+<!-- DFA Content Section (Initially Hidden) -->
+<div id="dfa-content" style="display: none; margin-top: 20px;">
+  <!-- Navigation Bar -->
+  <div class="nav-bar">
+      <button id="nav-dfa">Daily Feed Allowance</button>
+      <button id="nav-tfr">Total Feed Requirement</button>
+      <button id="nav-profit">Profitability</button>
+  </div>
+
+<!-- Calculator 1: Daily Feed Allowance -->
+<div id="calculator-dfa" class="calculator-container">
+  <div class="calculator-layout">
+      <div class="calculator">
+          <h2>Daily Feed Allowance</h2>
+          <form id="calculatorForm1">
+              <!-- Number of stock label -->
+              <label>Number of Stock:</label>
+
+              <!-- Label and combobox for Number of Cages -->
+              <label for="cages">No. of Cages:</label>
+              <select id="cagesSelect" class="styled-select noticeable-select">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+              </select><br>
+
+              <!-- Stock input fields -->
+              <div id="stockInputsContainer"></div>
+
+              <!-- Feeding Rate -->
+              <label for="monthSelect">Feeding Rate:</label>
+              <select id="monthSelect" class="styled-select noticeable-select">
+                  <option value="1">1 month</option>
+                  <option value="2">2 months</option>
+                  <option value="3">3 months</option>
+                  <option value="4">4 months</option>
+                  <option value="5">5 months</option>
+              </select><br>
+
+              <label><input type="checkbox" id="customFeedingRateCheckbox"> Custom Feeding Rate</label>
+              <input type="text" id="num2" placeholder="%" disabled><br>
+
+              <label for="num3">Estimated Survival:</label>
+              <input type="text" id="num3" placeholder="%" required><br>
+
+              <label for="num4">Weight (avg. weight in grams):</label>
+              <input type="number" id="num4" required step="any" min="0"><br><br>
+
+              <button type="button" id="calculateBtn1">Calculate</button>
+          </form>
+          <div class="result-container">
+              <p id="result1" class="result"></p>
+          </div>
+      </div>
+
+      <!-- Information Section -->
+      <div class="info-section">
+          <h3>Important Information</h3>
+          <div class="info-content">
+              <p><strong>Number of Stock:</strong> Refers to the total number of fish stock.</p>
+              <p><strong>Feeding Rate:</strong> The percentage of feed given to the fish based on age.</p>
+              <p><strong>Estimated Survival:</strong> The expected survival rate of the fish stock.</p>
+              <p><strong>Weight:</strong> Average weight of the fish in grams.</p>
+          </div>
+      </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      // Event listeners for input changes
+      const cagesSelect = document.getElementById('cagesSelect');
+      const stockInputsContainer = document.getElementById('stockInputsContainer');
+
+      // Update stock inputs based on cages
+      cagesSelect.addEventListener('change', function() {
+          const cageCount = parseInt(cagesSelect.value);
+          stockInputsContainer.innerHTML = '';
+
+          for (let i = 0; i < cageCount; i++) {
+              const input = document.createElement('input');
+              input.type = 'number';
+              input.placeholder = `Cage ${i + 1}`;
+              input.required = true;
+              stockInputsContainer.appendChild(input);
+          }
+      });
+
+      // Set initial stock input fields
+      cagesSelect.dispatchEvent(new Event('change'));
+
+      // Calculate button logic
+      document.getElementById('calculateBtn1').addEventListener('click', function() {
+          // Get stock and feeding rate values
+          const stockInputs = document.querySelectorAll('#stockInputsContainer input');
+          let totalStock = Array.from(stockInputs).reduce((sum, input) => sum + (parseFloat(input.value) || 0), 0);
+          const num2 = parseFloat(document.getElementById('num2').value) / 100;
+          const num3 = parseFloat(document.getElementById('num3').value) / 100;
+          const num4 = parseFloat(document.getElementById('num4').value);
+
+          if (!isNaN(totalStock) && !isNaN(num2) && !isNaN(num3) && !isNaN(num4)) {
+              const resultGrams = totalStock * num2 * num3 * num4;
+              const resultKilograms = resultGrams / 1000;
+              document.getElementById("result1").textContent = `Daily Feed Allowance is ${resultGrams.toFixed(2)} grams or ${resultKilograms.toFixed(2)} kg.`;
+          } else {
+              document.getElementById("result1").textContent = "Please enter valid numbers.";
+          }   
+      });
+  });
+</script>
+
+    <!-- Calculator 2: Total Feed Requirement -->
+    <div id="calculator-tfr" class="calculator-container">
+      <div class="calculator-layout">
+      <div class="calculator">
+          <h2>Total Feed Requirement</h2>
+          <form id="calculatorForm2">
+              <label for="num5">DFA (kg):</label>
+              <input type="number" id="num5" required min="0"><br><br>
+              <label for="num6">Feeding Duration:</label>
+              <input type="number" id="num6" required min="0"><br><br>
+              <button type="button" id="calculateBtn2">Calculate</button>
+          </form>
+          <div class="result-container">
+              <p id="result2" class="result"></p>
+          </div>
+      </div>
+              <!-- Information Section -->
+              <div class="info-section">
+                  <h3>Important Information</h3>
+                  <div class="info-content">
+                      <p><strong>DFA (kg):</strong> Daily Feed Allowance in kilograms based on fish stock weight and feeding rate.</p>
+                      <p><strong>Feeding Duration:</strong> The total number of days over which the feed will be administered.</p>
+                      <!-- Add more descriptions if necessary -->
+                  </div>
+              </div>
+          </div>
+      </div>        
+
+  <!-- Calculator 3: Profitability -->
+  <div id="calculator-profit" class="calculator-container">
+      <div class="calculator-layout">
+      <div class="calculator">
+          <button class="backlog-button" id="toggleBacklogBtn">Show Backlog</button>
+          <h2>Profitability</h2>
+          <form id="calculatorForm3">
+              <!-- Profit Input -->
+              <div class="profit-input-container">
+                  <label for="profit">Income:</label>
+                  <input type="number" id="profit" required step="any" min="0">
+              </div>
+
+              <!-- Fingerlings Cost and Price -->
+              <div class="cost-input-container">
+                  <label for="fingerlings-cost">Fingerlings Cost:</label>
+                  <div class="input-group">
+                      <!-- Label and Input for Quantity -->
+                      <div class="input-wrapper">
+                          <label for="fingerlings-cost">Quantity:</label>
+                          <input type="number" id="fingerlings-cost" required step="any" min="0" placeholder="">
+                      </div>
+
+                      <!-- Label and Input for Price -->
+                      <div class="input-wrapper">
+                          <label for="fingerlings-price">Price:</label>
+                          <input type="number" id="fingerlings-price" required step="any" min="0" placeholder="">
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Feeds Cost and Price -->
+              <div class="cost-input-container">
+                  <label for="feeds-cost">Feeds Cost:</label>
+                  <div class="input-group">
+                      <!-- Label and Input for Quantity -->
+                      <div class="input-wrapper">
+                          <label for="feeds-cost">Quantity:</label>
+                          <input type="number" id="feeds-cost" required step="any" min="0" placeholder="">
+                      </div>
+
+                      <!-- Label and Input for Price -->
+                      <div class="input-wrapper">
+                          <label for="feeds-price">Price:</label>
+                          <input type="number" id="feeds-price" required step="any" min="0" placeholder="">
+                      </div>
+                  </div>
+              </div>
+              
+              <!-- Labor Cost -->
+              <div class="cost-input-container">
+                  <label for="labor-cost">Labor Cost:</label>
+                  <input type="number" id="labor-cost" required step="any" min="0">
+              </div>
+
+              <!-- Transportation Cost -->
+              <div class="cost-input-container">
+                  <label for="transport-cost">Transportation Cost:</label>
+                  <input type="number" id="transport-cost" required step="any" min="0">
+              </div>
+
+              <button type="button" id="calculateBtn3">Check Profit</button>
+          </form>
+          <div class="result-container">
+              <p id="result3" class="result"></p>
+          </div>
+      </div>
+
+              <!-- Information Section -->
+              <div class="info-section">
+                  <h3>Important Information</h3>
+                  <div class="info-content">
+                      <p><strong>Income:</strong> The expected revenue generated from the sale of fish stock.</p>
+                      <p><strong>Fingerlings Cost:</strong> Total cost of fingerlings based on quantity and price per unit.</p>
+                      <p><strong>Feeds Cost:</strong> Total feed investment based on quantity and price per unit.</p>
+                      <p><strong>Labor Cost:</strong> Expenses associated with labor during the production process.</p>
+                      <p><strong>Transportation Cost:</strong> The cost of transporting fish to market or buyers.</p>
+                      <!-- Add more descriptions if necessary -->
+                  </div>
+                        <!-- Backlog Container -->
+      <div id="backlogContainer" class="backlog-container"></div>
+    </div>
+              </div>
+          </div>
+      </div>        
+
+<!-- Refined Forecast Feature Section Start -->
+<section class="forecast-feature-section section-padding prelative" style="background-color: #a2d5f2;">
+  <div class="container">
+    <!-- Section Title Centered at the Top -->
+    <div class="row justify-content-center">
+      <div class="col-md-12 text-center">
+        <div class="section-header">
+          <h2 class="font-weight-bold">Why It Matters: Exploring Its Purpose and Importance</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="row align-items-center">
+      <!-- Full-Width Text Content -->
+      <div class="col-md-12">
+        <div class="section-content pr-4" style="margin-left: 20px;">
+          <!-- Moving Original Title Here -->
+          <div style="text-align: center;">
+          <h7>Forecasting Catfish Weight</h7>
+          <p class="lead mb-4">Accurate predictions of your catfish's weight for optimal harvest planning.</p>
+          </div>
+          <p class="mb-4">The <strong>Forecast Feature</strong> is an advanced tool that helps catfish farmers predict the future weight of their catfish. By utilizing critical parameters such as:</p>
+          
+          <!-- Enhanced List Styling -->
+          <ul class="feature-list" style="list-style-type:none; padding-left: 0;">
+            <li class="mb-3"><strong>Species:</strong> Each species of catfish exhibits unique growth patterns and characteristics. Some species grow faster or larger than others, which plays a critical role in accurately forecasting their weight. Understanding the specific growth rate for each species allows farmers to make more precise predictions and optimize their harvest schedule.</li>
+            <li class="mb-3"><strong>Temperature:</strong> Water temperature is a major factor affecting the metabolism and growth rate of catfish. When temperatures are optimal, catfish grow more rapidly due to higher metabolic rates. Conversely, extreme temperatures, whether too hot or too cold, can slow down their growth, reduce feeding efficiency, and even affect their survival.</li>
+            <li class="mb-3"><strong>Water pH:</strong> The pH levels of the water not only impact the overall health of catfish but also their ability to digest food efficiently. Maintaining a balanced pH ensures the fish remain healthy, reducing stress and promoting steady growth. Water that is too acidic or alkaline can negatively affect feeding, resulting in slower growth rates.</li>
+            <li class="mb-3"><strong>Stock of Fish:</strong> The density of catfish in a given space directly impacts their growth. High stocking densities lead to increased competition for food and oxygen, which can hinder growth. Lower densities allow for more available resources per fish, promoting faster and more uniform growth rates.</li>
+            <li class="mb-3"><strong>Feeds:</strong> The type and amount of feed provided play a crucial role in the growth of catfish. Quality feeds that are rich in nutrients ensure the fish grow quickly and remain healthy. The quantity and timing of feeding are equally important, as overfeeding or underfeeding can lead to poor growth outcomes.</li>
+            <li class="mb-3"><strong>Land:</strong> Environmental factors such as water flow, soil quality, and farm layout significantly impact the growth of catfish. Proper land management ensures that the fish have access to clean water with sufficient oxygen levels, promoting healthy growth and reducing the risk of disease or stunted growth.</li>
+            <li class="mb-3"><strong>Feed Type:</strong> Different stages of a catfish’s life require specific types of feed to ensure optimal growth. Juvenile catfish may need high-protein feeds to support rapid development, while mature fish may require different formulations to sustain healthy growth without overfeeding. Matching feed types to growth stages ensures steady and efficient weight gain.</li>
+            <li class="mb-3"><strong>Average Weight:</strong> Regularly monitoring the average weight of the fish provides valuable insights into their growth patterns. This data helps refine future weight predictions and allows farmers to adjust feeding strategies or environmental conditions to ensure the fish reach marketable sizes within the desired timeframe.</li>
+          </ul>
+          <p class="mt-4">This tool allows farmers to estimate when their catfish will reach the optimal weight for harvesting, helping avoid underdeveloped fish or overgrown, less marketable fish.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Importance Section with Centered Text -->
+    <div class="row mt-5 justify-content-center align-items-center text-center">
+      <div class="col-md-8">
+        <div class="importance-section p-4" style="background-color: #e9ecef; border-radius: 10px;">
+          <h5 class="mb-4">Importance</h5>
+          <p class="mb-4">The Forecast Tool plays a crucial role in ensuring operational efficiency in a catfish farm. Farmers can:</p>
+          <ul class="text-center" style="list-style-type:none; padding-left: 0;">
+            <li class="mb-3">Plan harvests around peak growth periods to maximize profitability</li>
+            <li class="mb-3">Make informed decisions regarding feed management, stock density, and environmental adjustments</li>
+            <li class="mb-3">Reduce financial risks by accurately predicting production timelines and costs</li>
+          </ul>
+          <p>Ultimately, this forecasting capability helps farmers optimize their resources, improve fish health, and enhance profitability in the long run.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Refined Forecast Feature Section End -->
+
+<!-- Refined Feed Manager Section Start -->
+<section class="feed-manager-section section-padding-4 prelative" style="background-color: #b0eacd;">
+  <div class="container">
+      <!-- Full-Width Text Content -->
+      <div class="row align-items-center">
+      <div class="col-md-12">
+        <div class="section-content pr-4" style="margin-left: 20px;">
+          <!-- Moving Original Title Here -->
+          <div style="text-align: center;">
+            <h7>Optimize Your Feeding Strategy</h7>
+            <p class="lead mb-4">Manage feed allocation and optimize profitability using our advanced feed calculators.</p>
+          </div>
+          <p class="mb-4">The <strong>Feed Manager</strong> is designed to help catfish farmers manage feeding strategies effectively. The tool offers three key calculators:</p>
+          
+          <!-- Enhanced List Styling -->
+          <ul class="feature-list" style="list-style-type:none; padding-left: 0;">
+            <li class="mb-3"><strong>Daily Feed Allowance (DFA):</strong> Calculate the daily amount of feed required based on the number of fish, feeding rate, and stock density. This ensures that each fish receives the optimal amount of nutrients necessary for healthy growth without overfeeding, which can lead to waste and increased costs. Proper DFA management also helps in maintaining the water quality, as uneaten feed can degrade and pollute the environment, affecting fish health and farm productivity.</li>
+            <li class="mb-3"><strong>Total Feed Requirement (TFR):</strong> Estimate the total amount of feed needed over a specific feeding duration, whether it’s for a week, a month, or an entire growth cycle. This helps in budgeting and planning, ensuring you have enough feed on hand to support your stock throughout their development phases. By understanding your TFR, you can also anticipate your supply needs, avoid disruptions in feeding schedules, and potentially negotiate better prices by purchasing feed in bulk.</li>
+            <li class="mb-3"><strong>Profitability:</strong> Assess the profitability of your farming operations by factoring in feed costs, labor, and other expenses versus the expected income. This calculation allows farmers to make informed decisions about when to harvest, how much to invest in feed, and what price points ensure maximum returns. By carefully balancing these factors, farmers can avoid over-investing in feed or resources that do not yield significant returns, thereby optimizing their profit margins and overall farm sustainability.</li>
+          </ul>
+          <p class="mt-4">These calculators are crucial in ensuring that you are not overfeeding or underfeeding your fish, maximizing both the growth and cost-efficiency of your farm.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Importance Section with Centered Text -->
+    <div class="row mt-5 justify-content-center align-items-center text-center">
+      <div class="col-md-8">
+        <div class="importance-section p-4" style="background-color: #e9ecef; border-radius: 10px;">
+          <h5 class="mb-4">Importance</h5>
+          <p class="mb-4">Efficient feed management plays a crucial role in reducing costs and improving the growth of catfish. Farmers can:</p>
+          <ul class="text-center" style="list-style-type:none; padding-left: 0;">
+            <li class="mb-3">Ensure precise feed allocation based on fish size and growth phase.</li>
+            <li class="mb-3">Reduce waste by optimizing feeding schedules and quantities.</li>
+            <li class="mb-3">Track profitability by understanding the balance between feed costs and income.</li>
+          </ul>
+          <p>By using the Feed Manager, farmers can significantly improve their operational efficiency and profitability, while maintaining the health of their fish stock.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Refined Feed Manager Section End -->
+
+<!-- Refined Geo Mapping Feature Section Start -->
+<section class="geo-mapping-section section-padding-4 prelative" style="background-color: #ffcdc1;">
+  <div class="container">
+      <!-- Full-Width Text Content -->
+      <div class="row align-items-center">
+        <div class="col-md-12">
+          <div class="section-content pr-4" style="margin-left: 20px;">
+            <!-- Moving Original Title Here -->
+            <div style="text-align: center;">
+          <h7>Geo Mapping: Locate Your Farm and Resources</h7>
+          <p class="lead mb-4">Easily navigate your farm location and nearby markets for fish, tools, and equipment.</p>
+        </div>
+          <p class="mb-4">The <strong>Geo Mapping Feature</strong> is a powerful tool designed to provide catfish farmers with geographic insights into their farming environment. By using geo mapping, you can:</p>
+
+          <!-- Enhanced List Styling -->
+          <ul class="feature-list" style="list-style-type:none; padding-left: 0;">
+            <li class="mb-3"><strong>Farm Location Mapping:</strong> Pinpoint the exact location of your catfish farm and monitor land usage. Track environmental factors such as water quality, temperature, and surrounding vegetation to optimize fish growth. Use GPS and geospatial data to manage land efficiently, ensuring the best conditions for sustainable farming. Stay informed about any changes in land use or nearby developments that may impact your operations.</li>
+            <li class="mb-3"><strong>Market Discovery:</strong> Find nearby markets for selling fish, sourcing tools, feed, and equipment. Access a comprehensive network of suppliers and buyers, ensuring you stay competitive. Get insights into local demand, pricing trends, and customer preferences to tailor your production and marketing efforts. Connect with potential business partners and grow your supply chain for a stronger market presence.</li>            
+          </ul>
+          <p class="mt-4">This feature is crucial for farmers to better understand their farm’s geography and to efficiently connect with suppliers, markets, and resources in their area.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Importance Section with Centered Text -->
+    <div class="row mt-5 justify-content-center align-items-center text-center">
+      <div class="col-md-8">
+        <div class="importance-section p-4" style="background-color: #e9ecef; border-radius: 10px;">
+          <h5 class="mb-4">Importance</h5>
+        <p>Geographical insights help catfish farmers make informed decisions. Through geo mapping, farmers can:</p>
+        <ul class="text-center" style="list-style-type:none; padding-left: 0;">
+          <li>Optimize the use of their land and water resources.</li>
+          <li>Identify nearby markets and suppliers to reduce transportation costs.</li>
+          <li>Enhance the supply chain by understanding local demand and available resources.</li>
+        </ul>
+        <p>By integrating the Geo Mapping Feature into their operations, farmers can make smarter decisions that improve efficiency and reduce costs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Refined Geo Mapping Feature Section End -->
+  
+<!-------Footer Start------->
+<footer class="footer-copy">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <a>2018 &copy; Hitovest. Website Designed by Hitovest team</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-------Footer End------->
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+  import { getFirestore, getDoc, doc, setDoc, onSnapshot, orderBy, limit, collection, getDocs, query} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+      apiKey: "AIzaSyBHKPP96j8T_ZDh2SeXH2dR1fU7dx5fXVc",
+      authDomain: "login2-bbcac.firebaseapp.com",
+      projectId: "login2-bbcac",
+      storageBucket: "login2-bbcac.appspot.com",
+      messagingSenderId: "355293344565",
+      appId: "1:355293344565:web:58022c1d4e78566ab2527c"
+  };
+
+  // Initialize Firebase for SignUp
+  const app = initializeApp(firebaseConfig);
+  const signUp = document.getElementById("submitSignUp");
+    signUp.addEventListener('click', (event) => {
+        event.preventDefault();
+        const username = document.getElementById('username2').value;
+        const email = document.getElementById('email2').value;
+        const password = document.getElementById('password2').value;
+        const confirmPassword = document.getElementById('confirmPassword2').value;
+        const role = document.getElementById('selectedRole').value;
+
+        if (!role) {
+        alert("Please select a role before signing up.");
+        return;
+      }
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+      }
+  
+      const auth = getAuth();
+      const db = getFirestore();
+  
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        const userData = {
+            username: username,
+            email: email,
+            role: role,
+        }
+        const docRef = doc(db, "users", user.uid);
+        // Redirect to the login page after successful signup
+        setDoc(docRef,userData)
+        .then(() => {
+        alert("User created successfully!");
+        $('#signupModal').modal('hide');  // Hide the SignUp modal
+        location.reload();
+      })
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorMessage);
+    })
+  });
+  
+  // Initialize Firebase for Login
+  const signIn = document.getElementById("submitSignIn");
+    signIn.addEventListener('click', (event) => {
+      event.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const auth = getAuth();
+  
+        signInWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+          // Signed in 
+          const user = userCredential.user;
+          alert('User logged in!');
+          // Redirect to the dashboard page after successful login
+          localStorage.setItem('loggedInUserId', user.uid);
+          window.location.href = "index.html";
+      })
+      .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+        alert(errorMessage);
+      });
+    });
+
+    // Initialize Firebase for Logout
+    const auth = getAuth();
+    const db = getFirestore();
+  
+    document.addEventListener("DOMContentLoaded", () => {
+      const loginLink = document.getElementById('loginLink');
+      const featureButtons = document.querySelectorAll('.feature-button');
+  
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          loginLink.textContent = 'Logout';
+          loginLink.href = '#';
+          loginLink.onclick = (event) => {
+            event.preventDefault();
+            signOut(auth).then(() => {
+              console.log('User signed out.');
+              window.location.reload();
+            }).catch((error) => {
+              console.error('Sign out error:', error);
+            });
+          };
+          featureButtons.forEach(button => {
+                button.disabled = false;
+                button.onclick = null;  // Remove any previous click event
+              });
+        } else {
+          loginLink.textContent = 'Login';
+          loginLink.href = '#';  // Prevent default navigation
+          loginLink.onclick = (event) => {
+            event.preventDefault();  // Prevent default behavior
+            $('#loginModal').modal('show');  // Trigger the login modal
+          };
+  
+          featureButtons.forEach(button => {
+            button.disabled = false;  // Allow button to be clickable for redirection
+            button.onclick = (event) => {
+              event.preventDefault();
+              $('#loginModal').modal('show');  // Trigger the login modal
+            }
+          })
+        }
+      })
+    });
+
+    onAuthStateChanged(auth, (user) => {
+            if (user) {
+                loadBacklogs(user.uid);
+            }
+        });
+
+        // Event Listeners for Buttons
+        document.getElementById('nav-dfa').addEventListener('click', () => showCalculator('dfa'));
+        document.getElementById('nav-tfr').addEventListener('click', () => showCalculator('tfr'));
+        document.getElementById('nav-profit').addEventListener('click', () => showCalculator('profit'));
+        document.getElementById('calculateBtn1').addEventListener('click', calculate);
+        document.getElementById('calculateBtn2').addEventListener('click', calculateSimple);
+        document.getElementById('calculateBtn3').addEventListener('click', calculateProfit);
+        document.getElementById('toggleBacklogBtn').addEventListener('click', toggleBacklog);
+
+        function getUserId() {
+            const user = auth.currentUser;  // Ensure 'auth' is correctly initialized with Firebase Auth.
+            return user ? user.uid : null;
+        }
+    
+        async function loadBacklogs() {
+            var userId = getUserId(); // Replace with the actual method to get the logged-in user's ID
+            if (!userId) {
+                console.error('User not authenticated');
+                return;
+            }
+
+            try {
+                const userDocRef = doc(db, "users", userId);
+                const userDocSnap = await getDoc(userDocRef);
+
+                if (userDocSnap.exists()) {
+                    const backlogs = userDocSnap.data().backlogs || [];
+                    renderBacklogs(backlogs);
+                } else {
+                    console.log('No backlogs found for this user.');
+                }
+            } catch (error) {
+                console.error('Error loading backlogs: ', error);
+            }
+        }
+
+        function renderBacklogs(backlogs) {
+        var backlogContainer = document.getElementById("backlogContainer");
+        backlogContainer.innerHTML = ''; // Clear previous entries
+
+        if (backlogs.length === 0) {
+            backlogContainer.innerHTML = '<div class="backlog-item">No backlogs have been recorded yet.</div>';
+        } else {
+            backlogs.forEach(function (backlogEntry) {
+                backlogContainer.innerHTML += `<div class="backlog-item">${backlogEntry}</div>`;
+            });
+        }
+    }
+
+        function toggleBacklog() {
+        const backlogContainer = document.getElementById("backlogContainer");
+        
+        // Toggle the visibility of the backlog for Profitability Calculator only
+        if (document.getElementById("calculator-profit").classList.contains("active-calculator")) {
+            backlogContainer.style.display = backlogContainer.style.display === "none" || backlogContainer.style.display === "" ? "block" : "none";
+        }
+    }
+
+        function toggleFeedingRate() {
+            const customFeedingRateCheckbox = document.getElementById("customFeedingRateCheckbox");
+            const monthSelect = document.getElementById("monthSelect");
+            const num2 = document.getElementById("num2");
+
+            if (customFeedingRateCheckbox.checked) {
+                num2.disabled = false;
+                monthSelect.disabled = true;
+                num2.value = ''; // Clear the value if custom rate is enabled
+            } else {
+                num2.disabled = true;
+                monthSelect.disabled = false;
+                updateFeedingRate(); // Update feeding rate based on the selected month
+            }
+        }
+
+        // Make sure this function is called on checkbox change
+        document.getElementById("customFeedingRateCheckbox").addEventListener('change', toggleFeedingRate);
+
+
+        function showCalculator(calculatorId) {
+            const calculators = document.querySelectorAll('.calculator-container');
+            const backlogContainer = document.getElementById("backlogContainer");
+
+            // Hide all calculators
+            calculators.forEach(calculator => {
+            calculator.style.display = 'none';
+            calculator.classList.remove('active-calculator');
+            });
+
+            // Show the selected calculator
+            const selectedCalculator = document.getElementById(`calculator-${calculatorId}`);
+            selectedCalculator.style.display = 'block';
+            selectedCalculator.classList.add('active-calculator');
+
+            // Hide the backlog container if not on Profitability Calculator
+            if (calculatorId !== 'profit') {
+                backlogContainer.style.display = 'none';
+            }
+
+            // Update navigation bar to highlight active calculator
+            const buttons = document.querySelectorAll('.nav-bar button');
+            buttons.forEach(button => button.classList.remove('active'));
+            document.getElementById(`nav-${calculatorId}`).classList.add('active');
+        }
+
+
+        function calculate() {
+    // Get all the No. of stock inputs dynamically generated
+    const stockInputs = document.querySelectorAll('#stockInputsContainer input');
+    let totalStock = 0;
+
+    // Sum the values of all stock inputs
+    stockInputs.forEach(input => {
+        const stockValue = parseFloat(input.value);
+        if (!isNaN(stockValue)) {
+            totalStock += stockValue;
+        }
+    });
+
+    // Parse other inputs
+    const num2Input = document.getElementById("num2").value.trim();
+    const num3Input = document.getElementById("num3").value.trim();
+    const num4 = parseFloat(document.getElementById("num4").value);
+
+    // Convert percentages to decimals
+    const num2 = parseFloat(num2Input.replace('%', '')) / 100;
+    const num3 = parseFloat(num3Input.replace('%', '')) / 100;
+
+    // Validate all inputs and perform calculation
+    if (!isNaN(totalStock) && !isNaN(num2) && !isNaN(num3) && !isNaN(num4)) {
+        const resultGrams = totalStock * num2 * num3 * num4;
+        const resultKilograms = resultGrams / 1000;
+
+        // Round the results to 2 decimal places
+        const resultGramsRounded = parseFloat(resultGrams.toFixed(2));
+        const resultKilogramsRounded = parseFloat(resultKilograms.toFixed(2));
+
+        // Display the result
+        const resultStatement = `Daily Feed Allowance is ${resultGramsRounded} grams or ${resultKilogramsRounded} kg.`;
+        document.getElementById("result1").textContent = resultStatement;
+    } else {
+        // Show error message if inputs are invalid
+        document.getElementById("result1").textContent = "Please enter valid numbers.";
+    }
+}
+
+        // Initialize default state
+        document.getElementById('calculator-dfa').style.display = 'block';
+        document.getElementById('nav-dfa').classList.add('active');
+        updateFeedingRate();
+
+        function updateFeedingRate() {
+            const monthSelect = document.getElementById("monthSelect");
+            const num2 = document.getElementById("num2");
+
+            const selectedMonth = parseInt(monthSelect.value);
+            const feedingRate = 10 - (selectedMonth - 1);  // Adjust feeding rate logic as per your needs
+
+            num2.value = feedingRate + '%';
+        }
+
+        // Make sure this function is called on month select change
+        document.getElementById("monthSelect").addEventListener('change', updateFeedingRate);
+
+
+        async function saveBacklogToFirestore(userId, backlogEntry) {
+            if (!userId) {
+                console.error('User not authenticated');
+                return;
+            }
+
+            try {
+                const userDocRef = doc(db, "users", userId);
+                const userDocSnap = await getDoc(userDocRef);
+
+                let existingBacklogs = [];
+                if (userDocSnap.exists()) {
+                    existingBacklogs = userDocSnap.data().backlogs || [];
+                }
+
+                existingBacklogs.push(backlogEntry);
+                await setDoc(userDocRef, { backlogs: existingBacklogs }, { merge: true });
+                console.log('Backlog saved successfully.');
+            } catch (error) {
+                console.error('Error saving backlog: ', error);
+            }
+        }
+
+        function calculateSimple() {
+            const num5 = parseFloat(document.getElementById("num5").value);
+            const num6 = parseFloat(document.getElementById("num6").value);
+    
+            if (!isNaN(num5) && !isNaN(num6)) {
+                const result = num5 * num6;
+                const resultRounded = parseFloat(result.toFixed(2));
+                document.getElementById("result2").textContent = `Total Feed Requirement is ${resultRounded} kg.`;
+            } else {
+                document.getElementById("result2").textContent = "Please enter valid numbers.";
+            }
+        }
+
+        function calculateProfit() {
+            var profit = parseFloat(document.getElementById("profit").value);
+
+            var fingerlingsCost = parseFloat(document.getElementById("fingerlings-cost").value);
+            var fingerlingsPrice = parseFloat(document.getElementById("fingerlings-price").value);
+            var fingerlingsTotal = fingerlingsCost * fingerlingsPrice;
+
+            var feedsCost = parseFloat(document.getElementById("feeds-cost").value);
+            var feedsPrice = parseFloat(document.getElementById("feeds-price").value);
+            var feedsTotal = feedsCost * feedsPrice;
+
+            var laborCost = parseFloat(document.getElementById("labor-cost").value);
+            var transportCost = parseFloat(document.getElementById("transport-cost").value);
+
+            if (!isNaN(profit) && !isNaN(fingerlingsTotal) && !isNaN(feedsTotal) && !isNaN(laborCost) && !isNaN(transportCost)) {
+                var totalCost = fingerlingsTotal + feedsTotal + laborCost + transportCost;
+                var calculatedProfit = profit - totalCost;
+                var resultMessage = `Your potential profit is ${calculatedProfit.toFixed(2)} php.`;
+
+                document.getElementById("result3").innerText = resultMessage;
+
+                // Ask the user if they want to save the result to the backlog
+                var saveToBacklog = confirm("Would you like to save this result to the backlog?");
+                
+                if (saveToBacklog) {
+                    var now = new Date();
+                    
+                    // Convert month number to month name
+                    var options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+                    var formattedDate = now.toLocaleString('en-US', options);
+                    
+                    var backlogEntry = `${formattedDate}: ${calculatedProfit.toFixed(2)} php`;
+
+                    // Save the backlog entry to Firestore
+                    var userId = getUserId();
+                    saveBacklogToFirestore(userId, backlogEntry);
+
+                    // Update the backlog on the page
+                    var backlogContainer = document.getElementById("backlogContainer");
+                    
+                    // Remove "No backlogs have been recorded yet." if it exists
+                    if (backlogContainer.innerHTML.includes("No backlogs have been recorded yet.")) {
+                        backlogContainer.innerHTML = ''; // Clear the container
+                    }
+
+                    // Add the new entry
+                    backlogContainer.innerHTML += `<div class="backlog-item">${backlogEntry}</div>`;
+                }
+            } else {
+                document.getElementById("result3").innerText = "Please enter valid numbers in all fields.";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            showCalculator('dfa');
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+        const auth = getAuth();
+        onAuthStateChanged(auth, (user) => {
+          const geomapButton = document.getElementById('geomapButton');
+          const forecastButton = document.getElementById('forecastButton');
+          const geoContent = document.getElementById('geo-content'); // Example content for Geo Map
+          const forecastContent = document.getElementById('forecast-content'); // Example content for Forecast
+
+          // Function to show login prompt and prevent content display
+          const showLoginPrompt = (event, contentSection) => {
+            event.preventDefault();
+            event.stopPropagation(); // Stops further action that might show content
+            $('#loginModal').modal('show'); // Display login modal
+
+            // Hide the content if it's being displayed
+            if (contentSection) {
+              contentSection.style.display = 'none';
+            }
+          };
+
+          if (!user) {
+            // Attach the login prompt handler to all buttons
+            geomapButton.addEventListener('click', (event) => showLoginPrompt(event, geoContent));
+            forecastButton.addEventListener('click', (event) => showLoginPrompt(event, forecastContent));
+          }
+        });
+      });
+
+        document.addEventListener("DOMContentLoaded", () => {
+          const auth = getAuth();
+          onAuthStateChanged(auth, (user) => {
+            const dfaContent = document.getElementById('dfa-content');
+            const feedManagerButton = document.getElementById('feedManagerButton');
+
+            if (user) {
+              // Allow authenticated users to toggle DFA Content
+              feedManagerButton.addEventListener('click', function (event) {
+                event.preventDefault();
+                toggleDFA(); // Toggle DFA content visibility
+              });
+            } else {
+              // Show login prompt for unauthenticated users
+              feedManagerButton.addEventListener('click', function (event) {
+                event.preventDefault();
+                $('#loginModal').modal('show');
+              });
+            }
+          });
+        });
+
+// Function to toggle DFA content
+function toggleDFA() {
+  const dfaContent = document.getElementById('dfa-content');
+  dfaContent.style.display = dfaContent.style.display === 'none' ? 'block' : 'none';
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const auth = getAuth();
+  const db = getFirestore();
+
+  // Feature Buttons
+  const geomapButton = document.getElementById("geomapButton");
+  const forecastButton = document.getElementById("forecastButton");
+  const feedManagerButton = document.getElementById("feedManagerButton");
+
+  // Feature Content Sections
+  const geoContent = document.getElementById("geo-content");
+  const forecastContent = document.getElementById("forecast-content");
+  const dfaContent = document.getElementById("dfa-content");
+
+  // Hide all content initially
+  const hideAllFeatures = () => {
+    geoContent.style.display = "none";
+    forecastContent.style.display = "none";
+    dfaContent.style.display = "none";
+  };
+
+  // Enforce role restrictions
+  const enforceRoleRestrictions = (role) => {
+    // Attach click event for Geo Map
+    geomapButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      hideAllFeatures(); // Hide all features first
+      if (role === "Guest" || role === "StoreOwner" || role === "Farmer") {
+        geoContent.style.display = "block"; // Show only Geo Map for all roles
+      }
+    });
+
+    // Attach click event for Forecast
+    forecastButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      hideAllFeatures(); // Hide all features first
+      if (role === "Farmer") {
+        forecastContent.style.display = "block"; // Show only for Farmer
+      } else {
+        alert("Forecast is restricted to Farmers only.");
+      }
+    });
+
+    // Attach click event for Feed Manager
+    feedManagerButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      hideAllFeatures(); // Hide all features first
+      if (role === "Farmer") {
+        dfaContent.style.display = "block"; // Show only for Farmer
+      } else {
+        alert("Feed Manager is restricted to Farmers only.");
+      }
+    });
+  };
+
+  // Fetch user role and enforce restrictions
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      try {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+
+        if (userDoc.exists()) {
+          const userRole = userDoc.data().role; // Fetch the role from Firestore
+          enforceRoleRestrictions(userRole); // Apply restrictions dynamically
+        } else {
+          console.error("User role not found in Firestore.");
+        }
+      } catch (error) {
+        console.error("Error fetching user role:", error);
+      }
+    } else {
+      // If not logged in, show login prompt on button click
+      const showLoginPrompt = (event) => {
+        event.preventDefault();
+        alert("Please log in to access this feature.");
+        $("#loginModal").modal("show");
+      };
+
+      geomapButton.addEventListener("click", showLoginPrompt);
+      forecastButton.addEventListener("click", showLoginPrompt);
+      feedManagerButton.addEventListener("click", showLoginPrompt);
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const auth = getAuth();
+    const db = getFirestore();
+    const dashboardLink = document.querySelector('.nav-link[href="dashboard.html"]');
+
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            if (userDoc.exists()) {
+                const userData = userDoc.data();
+                dashboardLink.addEventListener("click", (event) => {
+                    if (userData.role !== "Farmer") {
+                        event.preventDefault();
+                        alert("Access denied. Only Farmers can view the Dashboard.");
+                    }
+                });
+            }
+        } else {
+            // If not logged in, block access
+            dashboardLink.addEventListener("click", (event) => {
+                event.preventDefault();
+                alert("Please log in to access the Dashboard.");
+            });
+        }
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+        const feedAmountInput = document.getElementById("FEEDS");
+
+        function saveToFirestore(userId) {
+            const userDocRef = doc(db, "forecastInputs", userId);
+            setDoc(userDocRef, {
+                feedAmount: feedAmountInput.value
+            }, { merge: true });
+        }
+
+        function loadFromFirestore(userId) {
+            const userDocRef = doc(db, "forecastInputs", userId);
+            getDoc(userDocRef).then(docSnap => {
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    if (data.feedAmount) feedAmountInput.value = data.feedAmount;
+                }
+            });
+        }
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                loadFromFirestore(user.uid);
+                feedAmountInput.addEventListener("input", () => saveToFirestore(user.uid));
+            }
+        });
+
+        document.getElementById("calculateBtn1").addEventListener("click", function () {
+            const stockInputs = document.querySelectorAll('#stockInputsContainer input');
+            let totalStock = Array.from(stockInputs).reduce((sum, input) => sum + (parseFloat(input.value) || 0), 0);
+            const num2 = parseFloat(document.getElementById('num2').value) / 100;
+            const num3 = parseFloat(document.getElementById('num3').value) / 100;
+            const num4 = parseFloat(document.getElementById('num4').value);
+
+            if (!isNaN(totalStock) && !isNaN(num2) && !isNaN(num3) && !isNaN(num4)) {
+                const resultGrams = totalStock * num2 * num3 * num4;
+                const resultKilograms = resultGrams / 1000;
+                document.getElementById("result1").textContent = `Daily Feed Allowance is ${resultGrams.toFixed(2)} grams or ${resultKilograms.toFixed(2)} kg.`;
+                feedAmountInput.value = resultKilograms.toFixed(2);
+                auth.currentUser && saveToFirestore(auth.currentUser.uid);
+            }
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+    // Retrieve stored values
+    const storedPopulation = localStorage.getItem('forecastPopulation');
+    const storedLandArea = localStorage.getItem('forecastLandArea');
+    const storedFeedType = localStorage.getItem('forecastFeedType');
+
+    // Populate input fields if data exists
+    if (storedPopulation) {
+        document.getElementById("STOCK").value = storedPopulation;
+    }
+    if (storedLandArea) {
+        document.getElementById("LAND").value = storedLandArea;
+    }
+    if (storedFeedType) {
+        document.getElementById("FEEDTYPE").value = storedFeedType;
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            const forecastRef = doc(db, `users/${user.uid}/forecast`, "parameters");
+            const feedRef = doc(db, `users/${user.uid}/forecast`, "feed");
+
+            try {
+                const forecastSnap = await getDoc(forecastRef);
+                const feedSnap = await getDoc(feedRef);
+
+                if (forecastSnap.exists()) {
+                    const data = forecastSnap.data();
+                    document.getElementById("STOCK").value = data.fishStock || "";
+                    document.getElementById("LAND").value = data.landArea || "";
+                }
+
+                if (feedSnap.exists()) {
+                    document.getElementById("FEEDTYPE").value = feedSnap.data().feedType || "";
+                }
+            } catch (error) {
+                console.error("Error fetching forecast data:", error);
+            }
+        } else {
+            // If no user is logged in, clear the inputs
+            document.getElementById("STOCK").value = "";
+            document.getElementById("LAND").value = "";
+            document.getElementById("FEEDTYPE").value = "";
+        }
+    });
+});
+
+onAuthStateChanged(auth, async (user) => {
+    if (user) {
+        const userId = user.uid;
+        const sensorHistoryRef = collection(db, "users", userId, "sensorHistory");
+
+        // Get the last 5 readings
+        const q = query(sensorHistoryRef, orderBy("timestamp", "desc"), limit(5));
+        const snapshot = await getDocs(q);
+
+        let temperatureSum = 0;
+        let phSum = 0;
+        let count = 0;
+
+        snapshot.forEach(doc => {
+            const data = doc.data();
+            temperatureSum += data.waterTemperature;
+            phSum += data.pHLevel;
+            count++;
+        });
+
+        if (count > 0) {
+            const avgTemp = (temperatureSum / count).toFixed(2);
+            const avgPH = (phSum / count).toFixed(2);
+
+            document.getElementById("TEMP").value = avgTemp;
+            document.getElementById("W_PH").value = avgPH;
+        }
+    }
+});
+
+  </script>
+   <!-- prediction script--> 
+   <script>
+    function generatePrediction() {
+        let feedAmount = parseFloat(document.getElementById("FEEDS").value);
+        let predictedWeightElement = document.getElementById("predictedWeight");
+    
+        // Show loading text
+        predictedWeightElement.innerText = "Calculating...";
+    
+        let minWeight, maxWeight;
+    
+        if (feedAmount < 2) {
+            minWeight = 140.0;
+            maxWeight = 170.0;
+        } else if (feedAmount >= 3 && feedAmount < 4) {
+            minWeight = 180.0;
+            maxWeight = 220.0;
+        } else if (feedAmount >= 5 && feedAmount < 6) {
+            minWeight = 230.0;
+            maxWeight = 250.0; 
+        } else if (feedAmount >= 7 && feedAmount < 9) {
+            minWeight = 260.0;
+            maxWeight = 299.0;   
+        } else {
+            minWeight = 300.0;
+            maxWeight = 350.0;
+        }
+    
+        let randomWeight = (Math.random() * (maxWeight - minWeight) + minWeight).toFixed(2);
+    
+        // Simulate a delay (2 seconds) before showing result
+        setTimeout(() => {
+            predictedWeightElement.innerText = randomWeight + " kg";
+        }, 2000);
+    }
+    </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script> 
+  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
+  <!-- scrollIt js --> 
+  <script src="js/scrollIt.min.js"></script> 
+  <script src="js/wow.min.js"></script> 
+  <script>
+      wow = new WOW();
+      wow.init();
+  $(document).ready(function(e) {
+  
+      $('#video-icon').on('click',function(e){
+      e.preventDefault();
+      $('.video-popup').css('display','flex');
+      $('.iframe-src').slideDown();
+      });
+      $('.video-popup').on('click',function(e){
+      var $target = e.target.nodeName;
+      var video_src = $(this).find('iframe').attr('src');
+      if($target != 'IFRAME'){
+      $('.video-popup').fadeOut();
+      $('.iframe-src').slideUp();
+      $('.video-popup iframe').attr('src'," ");
+      $('.video-popup iframe').attr('src',video_src);
+      }
+      });
+  
+      $('.slider').bxSlider({
+      pager: false
+      });
+  });
+      
+  $(window).on("scroll",function () {
+  
+      var bodyScroll = $(window).scrollTop(),
+      navbar = $(".navbar");
+      
+      if(bodyScroll > 50){
+      $('.navbar-logo img').attr('src','images/logo-black.png');
+      navbar.addClass("nav-scroll");
+  
+  }else{
+      $('.navbar-logo img').attr('src','images/logo.png');
+      navbar.removeClass("nav-scroll");
+  }
+  
+  });
+  $(window).on("load",function (){
+      var bodyScroll = $(window).scrollTop(),
+      navbar = $(".navbar");
+      
+      if(bodyScroll > 50){
+      $('.navbar-logo img').attr('src','images/logo-black.png');
+      navbar.addClass("nav-scroll");
+      }else{
+      $('.navbar-logo img').attr('src','images/logo-white.png');
+      navbar.removeClass("nav-scroll");
+      }
+  
+      $.scrollIt({
+      
+      easing: 'swing',      // the easing function for animation
+      scrollTime: 900,       // how long (in ms) the animation takes
+      activeClass: 'active', // class given to the active nav element
+      onPageChange: null,    // function(pageIndex) that is called when page is changed
+      topOffset: -63
+      });
+  });
+</script>
+</body>
+</html>

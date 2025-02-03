@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <!-- Font Google -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<style>
+  .container{
+    padding-top: 150px;
+  }
+    .inventory-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .card {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        min-height: 250px;
+    }
+
+    .card h3 {
+        margin-bottom: 15px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .card input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .card button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        background: green;
+    }    
+    
+    </style>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container-2 d-flex justify-content-between">
+<!-- Navbar Logo -->
+<a>     
+  <img src="images/hitovest-high-resolution-logo-transparent.png" alt="HITOVEST Logo" class="logo-1">
+</a>
+  
+      <!-- Navigation Links -->
+      <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item"> <a class="nav-link" href="index.html">Home</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="service-1.html">System Module</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="team.html">Team</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="dashboard.html">Dashboard</a> </li>
+          <li class="nav-item"> <a class="nav-link active" href="storage.html">Storage</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="contact.html">Contact</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="products.html">Store</a> </li>
+        </ul>
+      </div>
+  
+    <!-- Login/Logout Button -->
+    <div class="navbar-right">
+      <a id="loginLink" class="nav-link btn-soft-rectangle" href="#" data-toggle="modal" data-target="#loginModal">LOGIN</a>
+    </div>
+  </div>
+</nav>
+<!-- End Navbar -->
+  
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel"></h5>
+      </div>
+      <div class="modal-body login-modal">
+        <div class="wrapper">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div class="title">Login</div>
+          <form id="loginForm">
+            <div class="field">
+              <input type="email" id="email" required>
+              <label>Email Address</label>
+            </div>
+            <div class="field">
+              <input type="password" id="password" required>
+              <label>Password</label>
+            </div>
+            <div class="content">
+              <div class="checkbox">
+                <input type="checkbox" id="remember-me">
+                <label for="remember-me">Remember me</label>
+              </div>
+              <div class="pass-link">
+                <a href="#">Forgot password?</a>
+              </div>
+            </div>
+            <div class="field">
+              <button id="submitSignIn" class="submit-button">Login</button>
+            </div>
+            <div class="signup-link">
+              Not a member? <a href="#" data-toggle="modal" data-target="#signupModal" data-dismiss="modal">Signup now</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Signup Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+  <div class="modal-header">
+      <h5 class="modal-title" id="signupModalLabel"></h5>
+  </div>
+  <div class="modal-body login-modal">
+      <div class="wrapper">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="title">Create Account</div>
+
+<!-- Role Buttons -->
+<div class="role-selection text-center mb-4">
+<button type="button" id="guestButton" class="btn role-button">Guest</button>
+<button type="button" id="storeOwnerButton" class="btn role-button">Store Owner</button>
+<button type="button" id="farmerButton" class="btn role-button">Farmer</button>
+</div>
+<input type="hidden" id="selectedRole" name="role" value="">
+      
+    <!-- Updated Features List -->
+    <div class="features-list text-center">
+      <ul>
+        <li id="feature1" class="feature-item">Grants access to add markers on Geomap.</li>
+        <li id="feature2" class="feature-item">Grants access to Geomap and add products on Store Page.</li>
+        <li id="feature3" class="feature-item">Grants access to Feed Manager, Forecast, Geomap, and Dashboard.</li>
+      </ul>
+    </div>
+      
+
+      <form id="signupForm">
+          <div class="field">
+          <input type="text" id="username2" required>
+          <label>Username</label>
+          </div>
+          <div class="field">
+          <input type="email" id="email2" required>
+          <label>Email Address</label>
+          </div>
+          <div class="field">
+          <input type="password" id="password2" required>
+          <label>Password</label>
+          </div>
+          <div class="field">
+          <input type="password" id="confirmPassword2" required>
+          <label>Confirm Password</label>
+          </div>
+          <div class="field">
+          <button id="submitSignUp" class="submit-button">Sign Up</button>
+          </div>
+          <div class="signin-link">
+          Already a Member? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">Sign In</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+const buttons = {
+  Guest: document.getElementById("guestButton"),
+  StoreOwner: document.getElementById("storeOwnerButton"),
+  Farmer: document.getElementById("farmerButton"),
+};
+
+const featureElements = document.querySelectorAll(".feature-item");
+
+// Clear all highlights
+function clearHighlights() {
+  featureElements.forEach((feature) => feature.classList.remove("feature-highlight"));
+}
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Role Buttons
+  const roleButtons = {
+      Guest: document.getElementById("guestButton"),
+      StoreOwner: document.getElementById("storeOwnerButton"),
+      Farmer: document.getElementById("farmerButton"),
+  };
+
+  // Feature List Items
+  const featureItems = {
+      Guest: document.getElementById("feature1"),
+      StoreOwner: document.getElementById("feature2"),
+      Farmer: document.getElementById("feature3"),
+  };
+
+  const selectedRoleInput = document.getElementById("selectedRole");
+
+  // Helper function to clear highlights
+  function clearHighlights() {
+      Object.values(featureItems).forEach(item => item.classList.remove("feature-highlight"));
+  }
+
+  // Add click event listeners to each role button
+  Object.keys(roleButtons).forEach(role => {
+      roleButtons[role].addEventListener("click", () => {
+          clearHighlights();
+          featureItems[role].classList.add("feature-highlight");
+          selectedRoleInput.value = role;
+      });
+  });
+});
+</script>
+
+<div class="container">
+  <h2 class="text-center">Catfish Farm Inventory Management</h2>
+  <div class="inventory-section">
+      <div class="card farm">
+          <h3>Farm Management</h3>
+          <input type="number" id="land-input" placeholder="Enter land area (sq.m)">
+          <input type="number" id="fish-input" placeholder="Enter number of fish">
+          <button onclick="addFarm()">Add Farm</button>
+      </div>
+      <div class="card feed">
+          <h3>Feeds</h3>
+          <input type="text" id="feed-type" placeholder="Enter feed type">
+          <input type="number" id="feed-quantity" placeholder="Enter feed quantity (kg)">
+          <button onclick="addFeed()">Add Feed</button>
+      </div>
+      <div class="card equipment">
+          <h3>Aquaculture Equipment</h3>
+          <input type="text" id="equipment-name" placeholder="Enter equipment name">
+          <input type="number" id="equipment-quantity" placeholder="Enter equipment quantity">
+          <button onclick="addEquipment()">Add Equipment</button>
+      </div>
+  </div>
+
+  <h3 class="text-center">Current Inventory</h3>
+  <div id="inventory-list" class="p-3 border rounded">No items added yet.</div>
+</div>
+
+<script>
+  let inventory = [];
+
+  function addItem(type) {
+      let value;
+      if (type === 'land') {
+          value = document.getElementById('land-input').value;
+      } else if (type === 'fish') {
+          value = document.getElementById('fish-input').value;
+      } else if (type === 'feed') {
+          let feedType = document.getElementById('feed-type').value;
+          let quantity = document.getElementById('feed-quantity').value;
+          value = `${feedType} - ${quantity}kg`;
+      } else if (type === 'equipment') {
+          let equipName = document.getElementById('equipment-name').value;
+          let quantity = document.getElementById('equipment-quantity').value;
+          value = `${equipName} - ${quantity} units`;
+      }
+      
+      if (value) {
+          inventory.push({ type, value });
+          updateInventoryDisplay();
+      }
+  }
+
+  function updateInventoryDisplay() {
+      let inventoryDiv = document.getElementById('inventory-list');
+      if (inventory.length === 0) {
+          inventoryDiv.innerHTML = "No items added yet.";
+      } else {
+          inventoryDiv.innerHTML = "<ul>" + inventory.map(item => `<li><b>${item.type.toUpperCase()}:</b> ${item.value}</li>`).join('') + "</ul>";
+      }
+  }
+</script>
+</body>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+  import { getFirestore, getDocs, doc, setDoc, addDoc, updateDoc, deleteDoc, collection, query, orderBy } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+      apiKey: "AIzaSyBHKPP96j8T_ZDh2SeXH2dR1fU7dx5fXVc",
+      authDomain: "login2-bbcac.firebaseapp.com",
+      projectId: "login2-bbcac",
+      storageBucket: "login2-bbcac.appspot.com",
+      messagingSenderId: "355293344565",
+      appId: "1:355293344565:web:58022c1d4e78566ab2527c"
+  };
+
+  // Initialize Firebase for SignUp
+  const app = initializeApp(firebaseConfig);
+  const signUp = document.getElementById("submitSignUp");
+    signUp.addEventListener('click', (event) => {
+        event.preventDefault();
+        const username = document.getElementById('username2').value;
+        const email = document.getElementById('email2').value;
+        const password = document.getElementById('password2').value;
+        const confirmPassword = document.getElementById('confirmPassword2').value;
+        const role = document.getElementById('selectedRole').value;
+
+        if (!role) {
+        alert("Please select a role before signing up.");
+        return;
+      }
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+      }
+  
+      const auth = getAuth();
+      const db = getFirestore();
+  
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        const userData = {
+            username: username,
+            email: email,
+            role: role,
+        }
+        const docRef = doc(db, "users", user.uid);
+        // Redirect to the login page after successful signup
+        setDoc(docRef,userData)
+        .then(() => {
+        alert("User created successfully!");
+        $('#signupModal').modal('hide');  // Hide the SignUp modal
+        location.reload();
+      })
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorMessage);
+    })
+  });
+  
+  // Initialize Firebase for Login
+  const signIn = document.getElementById("submitSignIn");
+    signIn.addEventListener('click', (event) => {
+      event.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const auth = getAuth();
+  
+        signInWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+          // Signed in 
+          const user = userCredential.user;
+          alert('User logged in!');
+          // Redirect to the dashboard page after successful login
+          localStorage.setItem('loggedInUserId', user.uid);
+          window.location.href = "index.html";
+      })
+      .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+        alert(errorMessage);
+      });
+    });
+
+    // Initialize Firebase for Logout
+    const auth = getAuth();
+    const db = getFirestore();
+  
+    document.addEventListener("DOMContentLoaded", () => {
+      const loginLink = document.getElementById('loginLink');
+      const featureButtons = document.querySelectorAll('.feature-button');
+  
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          loginLink.textContent = 'Logout';
+          loginLink.href = '#';
+          loginLink.onclick = (event) => {
+            event.preventDefault();
+            signOut(auth).then(() => {
+              console.log('User signed out.');
+              window.location.reload();
+            }).catch((error) => {
+              console.error('Sign out error:', error);
+            });
+          };
+          featureButtons.forEach(button => {
+                button.disabled = false;
+                button.onclick = null;  // Remove any previous click event
+              });
+        } else {
+          loginLink.textContent = 'Login';
+          loginLink.href = '#';  // Prevent default navigation
+          loginLink.onclick = (event) => {
+            event.preventDefault();  // Prevent default behavior
+            $('#loginModal').modal('show');  // Trigger the login modal
+          };
+  
+          featureButtons.forEach(button => {
+            button.disabled = false;  // Allow button to be clickable for redirection
+            button.onclick = (event) => {
+              event.preventDefault();
+              $('#loginModal').modal('show');  // Trigger the login modal
+            }
+          })
+        }
+      })
+    });
+
+    let farmCount = 0;
+
+async function addFarm() {
+    let user = auth.currentUser;
+    if (!user) {
+        console.error("User not logged in");
+        return;
+    }
+
+    let landArea = document.getElementById('land-input').value;
+    let fishStock = document.getElementById('fish-input').value;
+    
+    if (landArea && fishStock) {
+        farmCount++;
+        let farmName = `Farm ${farmCount}`;
+        let docRef = await addDoc(collection(db, `users/${user.uid}/inventory`), { 
+            type: "farm", name: farmName, landArea, fishStock 
+        });
+        loadInventory();
+    }
+}
+
+async function addFeed() {
+    let user = auth.currentUser;
+    if (!user) {
+        console.error("User not logged in");
+        return;
+    }
+
+    let feedType = document.getElementById('feed-type').value;
+    let feedQuantity = document.getElementById('feed-quantity').value;
+    
+    if (feedType && feedQuantity) {
+        await addDoc(collection(db, `users/${user.uid}/inventory`), { 
+            type: "feed", feedType, feedQuantity 
+        });
+        loadInventory();
+    }
+}
+
+async function addEquipment() {
+    let user = auth.currentUser;
+    if (!user) {
+        console.error("User not logged in");
+        return;
+    }
+
+    let equipName = document.getElementById('equipment-name').value;
+    let equipQuantity = document.getElementById('equipment-quantity').value;
+    
+    if (equipName && equipQuantity) {
+        await addDoc(collection(db, `users/${user.uid}/inventory`), { 
+            type: "equipment", equipName, equipQuantity 
+        });
+        loadInventory();
+    }
+}
+
+async function loadInventory() {
+    let user = auth.currentUser;
+    if (!user) {
+        console.error("User not logged in");
+        return;
+    }
+
+    const querySnapshot = await getDocs(collection(db, `users/${user.uid}/inventory`));
+    let inventoryDiv = document.getElementById('inventory-list');
+    
+    inventoryDiv.innerHTML = "<ul>" + querySnapshot.docs.map(doc => {
+        let data = doc.data();
+        if (data.type === "farm") {
+            return `<li>
+                <b>${data.name || "Farm"}:</b> Land Area: ${data.landArea} sq.m, Fish Stock: ${data.fishStock}
+                <button onclick="useForForecast('${data.landArea}', '${data.fishStock}')">Use for Forecast?</button>
+                <button onclick="editItem('${doc.id}', '${data.type}')">Edit</button>
+                <button onclick="deleteItem('${doc.id}')">Delete</button>
+            </li>`;
+        } else if (data.type === "feed") {
+            return `<li>
+                <b>Feed Type:</b> ${data.feedType} - ${data.feedQuantity}kg
+                <button onclick="useFeedForForecast('${data.feedType}')">Use This Feed for Forecast?</button>
+                <button onclick="editItem('${doc.id}', '${data.type}')">Edit</button>
+                <button onclick="deleteItem('${doc.id}')">Delete</button>
+            </li>`;
+        } else {
+            return `<li>
+                <b>${data.name || data.type}:</b> ${data.equipName} - ${data.equipQuantity}
+                <button onclick="editItem('${doc.id}', '${data.type}')">Edit</button>
+                <button onclick="deleteItem('${doc.id}')">Delete</button>
+            </li>`;
+        }
+    }).join('') + "</ul>";
+}
+
+window.useForForecast = async function (landArea, fishStock) {
+    const user = auth.currentUser;
+    if (!user) {
+        console.error("User not logged in");
+        return;
+    }
+
+    // Store data in Firestore under the logged-in user's document
+    await setDoc(doc(db, `users/${user.uid}/forecast`, "parameters"), {
+        landArea: landArea,
+        fishStock: fishStock,
+    });
+
+    window.location.href = "service-1.html";
+};
+
+window.useFeedForForecast = async function (feedType) {
+    const user = auth.currentUser;
+    if (!user) {
+        console.error("User not logged in");
+        return;
+    }
+
+    // Store data in Firestore under the logged-in user's document
+    await setDoc(doc(db, `users/${user.uid}/forecast`, "feed"), {
+        feedType: feedType,
+    });
+
+    window.location.href = "service-1.html";
+};
+
+    async function deleteItem(id) {
+    let user = auth.currentUser;
+    if (!user) {
+        console.error("User not logged in");
+        return;
+    }
+
+    await deleteDoc(doc(db, `users/${user.uid}/inventory`, id));
+    loadInventory();
+}
+
+async function editItem(id, type) {
+    let user = auth.currentUser;
+    if (!user) {
+        console.error("User not logged in");
+        return;
+    }
+
+    let newValue = prompt("Edit item:", "");
+    if (!newValue) {
+        console.warn("Edit cancelled or empty input");
+        return;
+    }
+
+    const itemRef = doc(db, `users/${user.uid}/inventory`, id);
+    let updateData = {};
+    
+    if (type === "farm") {
+        updateData.landArea = newValue;
+    } else if (type === "feed") {
+        updateData.feedQuantity = newValue;
+    } else if (type === "equipment") {
+        updateData.equipQuantity = newValue;
+    }
+
+    await updateDoc(itemRef, updateData);
+    loadInventory();
+}
+
+auth.onAuthStateChanged(user => {
+    if (user) {
+        console.log("User logged in:", user.uid);
+        loadInventory();
+    } else {
+        console.log("User logged out");
+        document.getElementById('inventory-list').innerHTML = ""; // Clear UI
+    }
+});
+
+    window.addFarm = addFarm;
+    window.addFeed = addFeed;
+    window.addEquipment = addEquipment;
+    window.deleteItem = deleteItem;
+    window.editItem = editItem;    
+    </script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+</html>
