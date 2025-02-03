@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Hitovest</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="style.css"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<!-- Font Google -->
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/login.css">
+</head>
+<style>
+/* Header Logo Styling */
+.header-logo {
+    height: 250px; /* Adjust the size as needed */
+    width: auto;
+    display: block;
+    margin: 0 auto;
+}
+</style>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container-2 d-flex justify-content-between">
+<!-- Navbar Logo -->
+<a>     
+  <img src="images/hitovest-high-resolution-logo-transparent.png" alt="HITOVEST Logo" class="logo-1">
+</a>
+
+    <!-- Navigation Links -->
+    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <li class="nav-item"> <a class="nav-link active" href="index.html">Home</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="service-12.html">System Module</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="team.html">Team</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="dashboard.html">Dashboard</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="storage.html">Storage</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="contact.html">Contact</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="products.html">Store</a> </li>
+      </ul>
+    </div>
+
+    <!-- Login/Logout Button -->
+    <div class="navbar-right">
+      <a id="loginLink" class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">LOGIN</a>
+    </div>
+  </div>
+</nav>
+<!-- End Navbar --> 
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel"></h5>
+      </div>
+      <div class="modal-body login-modal">
+        <div class="wrapper">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div class="title">Login</div>
+          <form id="loginForm">
+            <div class="field">
+              <input type="email" id="email" required>
+              <label>Email Address</label>
+            </div>
+            <div class="field">
+              <input type="password" id="password" required>
+              <label>Password</label>
+            </div>
+            <div class="content">
+              <div class="checkbox">
+                <input type="checkbox" id="remember-me">
+                <label for="remember-me">Remember me</label>
+              </div>
+              <div class="pass-link">
+                <a href="#">Forgot password?</a>
+              </div>
+            </div>
+            <div class="field">
+              <button id="submitSignIn" class="submit-button">Login</button>
+            </div>
+            <div class="signup-link">
+              Not a member? <a href="#" data-toggle="modal" data-target="#signupModal" data-dismiss="modal">Signup now</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Signup Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="signupModalLabel"></h5>
+      </div>
+      <div class="modal-body login-modal">
+          <div class="wrapper">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+          <div class="title">Create Account</div>
+  
+  <!-- Role Buttons -->
+  <div class="role-selection text-center mb-4">
+    <button type="button" id="guestButton" class="btn role-button">Guest</button>
+    <button type="button" id="storeOwnerButton" class="btn role-button">Store Owner</button>
+    <button type="button" id="farmerButton" class="btn role-button">Farmer</button>
+  </div>
+  <input type="hidden" id="selectedRole" name="role" value="">
+          
+        <!-- Updated Features List -->
+        <div class="features-list text-center">
+          <ul>
+            <li id="feature1" class="feature-item">Grants access to add markers on Geomap.</li>
+            <li id="feature2" class="feature-item">Grants access to Geomap and add products on Store Page.</li>
+            <li id="feature3" class="feature-item">Grants access to Feed Manager, Forecast, Geomap, and Dashboard.</li>
+          </ul>
+        </div>
+          
+  
+          <form id="signupForm">
+              <div class="field">
+              <input type="text" id="username2" required>
+              <label>Username</label>
+              </div>
+              <div class="field">
+              <input type="email" id="email2" required>
+              <label>Email Address</label>
+              </div>
+              <div class="field">
+              <input type="password" id="password2" required>
+              <label>Password</label>
+              </div>
+              <div class="field">
+              <input type="password" id="confirmPassword2" required>
+              <label>Confirm Password</label>
+              </div>
+              <div class="field">
+              <button id="submitSignUp" class="submit-button">Sign Up</button>
+              </div>
+              <div class="signin-link">
+              Already a Member? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">Sign In</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const buttons = {
+      Guest: document.getElementById("guestButton"),
+      StoreOwner: document.getElementById("storeOwnerButton"),
+      Farmer: document.getElementById("farmerButton"),
+    };
+  
+    const featureElements = document.querySelectorAll(".feature-item");
+  
+    // Clear all highlights
+    function clearHighlights() {
+      featureElements.forEach((feature) => feature.classList.remove("feature-highlight"));
+    }
+  });
+  
+  document.addEventListener("DOMContentLoaded", () => {
+      // Role Buttons
+      const roleButtons = {
+          Guest: document.getElementById("guestButton"),
+          StoreOwner: document.getElementById("storeOwnerButton"),
+          Farmer: document.getElementById("farmerButton"),
+      };
+  
+      // Feature List Items
+      const featureItems = {
+          Guest: document.getElementById("feature1"),
+          StoreOwner: document.getElementById("feature2"),
+          Farmer: document.getElementById("feature3"),
+      };
+  
+      const selectedRoleInput = document.getElementById("selectedRole");
+  
+      // Helper function to clear highlights
+      function clearHighlights() {
+          Object.values(featureItems).forEach(item => item.classList.remove("feature-highlight"));
+      }
+  
+      // Add click event listeners to each role button
+      Object.keys(roleButtons).forEach(role => {
+          roleButtons[role].addEventListener("click", () => {
+              clearHighlights();
+              featureItems[role].classList.add("feature-highlight");
+              selectedRoleInput.value = role;
+          });
+      });
+  });
+  </script>
+  
+<!-------Banner Start------->
+<section class="banner section-padding-2 prelative">
+    <div class="container">
+        <div class="banner-text">
+          <div class="col-sm-12">
+            <div class="wow fadeInUp">
+            <h6></h6>
+            <h1>
+              <img src="images/hitovest-high-resolution-logo-transparent.png" alt="HITOVEST Logo" class="header-logo">
+            </h1>  
+            <h6>Your Best Companion for your Catfish</a>.</h6>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
+<!-------Banner End------->
+
+<!-------Catfish Start------->
+<div class="catfish-section">
+
+  <div class="text-content">
+      <h2>Catfish Farming: Leading the Way</h2>
+      <p>Catfish farming has become a leading force in the aquaculture industry, offering sustainable and efficient methods to meet the growing global demand for fish. Known for their hardy nature and adaptability, catfish are raised in controlled environments that ensure optimal growth while minimizing environmental impact. Modern catfish farms use innovative technologies for water quality management, feed optimization, and disease control, making the industry a model for sustainable practices. As a result, catfish farming not only provides a reliable source of protein but also supports local economies and contributes to food security worldwide. This leadership in aquaculture positions the industry as a key player in the future of sustainable food production.</p>
+      <ul>
+          <li><strong>500+</strong> ponds across the country</li>
+          <li><strong>20,000+</strong> tons of catfish produced annually</li>
+          <li><strong>High-quality sustainable farming practices</strong></li>
+      </ul>
+  </div>
+  <div class="image-container">
+    <img src="images/istockphoto-1280900474-612x612.jpg" alt="Catfish farming image 1" class="main-image">
+    <img src="images/450959998_3664744357172102_739282987235147270_n.jpg" alt="Catfish farming image 2" class="overlay-image">
+</div>
+</div>
+<!-------Catfish End------->
+
+<!-------Video Start------->
+<div class="video-section .section-padding-3">
+  <div class="video-container">
+    <iframe width="854" height="480" src="https://www.youtube.com/embed/VAX7mMd6MgQ" title="How To Start Catfish Farming/ A Lucrative Business And Rewarding Venture!!!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+  <div class="video-info">
+      <h2>Explore the World of Catfish Farming</h2>
+      <p>
+        Discover how modern practices are transforming catfish farming into one of the most sustainable and efficient industries in aquaculture. In this comprehensive video, we dive deep into every aspect of the farming process, from the careful design and management of ponds to advanced feeding strategies that promote optimal growth and ensure healthy, high-quality catfish. You’ll learn about the cutting-edge technologies used to monitor water quality, improve feed efficiency, and control disease, all of which contribute to minimizing the environmental impact of catfish production. Whether you’re new to aquaculture or an experienced farmer, this video offers valuable insights into how innovative practices are shaping the future of catfish farming and securing its role in feeding a growing global population.
+      </p>
+      <p><strong>Watch and learn about:</strong></p>
+      <ul>
+          <li>Modern catfish farming techniques</li>
+          <li>Innovative breeding practices</li>
+          <li>Sustainable feeding and maintenance</li>
+      </ul>
+  </div>
+</div>
+<!-------Video End------->
+
+<section class="catfish-guide-section section-padding prelative" style="background-color: #f5f5f5;">
+  <div class="container">
+    <!-- Updated Section Header -->
+    <div class="sectioner-header text-center">
+      <h3 class= "black">Start and Manage a Successful Catfish Farm</h3>
+      <span class="line"></span>
+    </div>
+    <div class="row">
+      <!-- Vertical Button Navigation -->
+      <div class="col-md-3">
+        <div class="guide-nav">
+          <button class="nav-btn active" onclick="showContent('plan')">Planning Your Catfish Farm</button>
+          <button class="nav-btn" onclick="showContent('water-quality')">Water Quality Management</button>
+          <button class="nav-btn" onclick="showContent('stocking')">Stocking the Fish</button>
+          <button class="nav-btn" onclick="showContent('feeding')">Feeding Your Catfish</button>
+          <button class="nav-btn" onclick="showContent('health')">Monitoring Fish Health</button>
+          <button class="nav-btn" onclick="showContent('harvesting')">Harvesting and Marketing</button>
+          <button class="nav-btn" onclick="showContent('profit-sustain')">Profitability and Sustainability</button>
+          <button class="nav-btn" onclick="showContent('final')">Final Tips for Success</button>
+        </div>
+      </div>
+
+      <!-- Content Section -->
+      <div class="col-md-9">
+        <!-- Plan and Construct Section -->
+        <div id="plan" class="guide-content active">
+          <h7>Planning Your Catfish Farm</h7>
+          <h4>Land Selection</h4>
+          <p>Choose a location with good access to water and transportation.</p>
+          <p>Ensure the land has well-drained soil to avoid stagnant water, which can affect water quality.</p>
+          <p>Check local regulations regarding fish farming in your area.</p>
+          <h4>Pond Design and Construction:</h4>
+          <p><strong>Size:</strong> Design the pond based on your target production scale. Small farms can start with 1,000 – 2,000 catfish per pond.</p>
+          <p><strong>Shape:</strong> Ponds are usually rectangular to allow easy water circulation and harvesting.</p>
+          <p><strong>Depth:</strong> Aim for a depth of 4-6 feet to maintain stable water temperatures and oxygen levels.</p>
+          <p><strong>Inlet and Outlet:</strong> Properly plan the inlet and outlet pipes to control water inflow and outflow, ensuring water is refreshed regularly.</p>
+        </div>
+
+        <!-- Water Quality Section -->
+        <div id="water-quality" class="guide-content">
+          <h7>Water Quality Management</h7>
+          <h4>Water Source:</h4>
+          <p>Use water from a reliable source like boreholes, rivers, or lakes, but ensure it’s clean and free from pollutants.</p>
+          <p>If using groundwater, test for chemicals like ammonia or heavy metals, as these can harm the fish.</p>
+          <h4>Water Quality Parameters to Monitor:</h4>
+          <p><strong>pH Level:</strong> Keep the water’s pH between 6.5 and 8.5 for optimal fish growth.</p>
+          <p><strong>Temperature:</strong> Maintain water temperatures between 75°F (24°C) and 85°F (29°C). Catfish grow best in warm water.</p>
+          <p><strong>Dissolved Oxygen:</strong> Ensure a steady supply of oxygen in the water using aerators or water flow mechanisms. Oxygen levels should be at least 3 mg/L for healthy fish.</p>
+          <p><strong>Ammonia and Nitrites:</strong> Regularly test for ammonia and nitrites, as high concentrations can stress or kill fish. Keep ammonia levels below 0.02 mg/L.</p>
+          <h4>Water Maintenance:</h4>
+          <p>Regularly exchange water to prevent the buildup of toxins.</p>
+          <p>Use filtration or aeration systems to maintain oxygen levels and keep the water clean.</p>
+        </div>
+
+        <!-- Stocking Section -->
+        <div id="stocking" class="guide-content">
+          <h7>Stocking the Fish:</h7>
+          <h4>Choosing the Right Species:</h4>
+          <p><strong>African Catfish (Clarias gariepinus):</strong> A popular choice for warm climates, known for its resilience and fast growth.</p>
+          <h4>Stocking Rate:</h4>
+          <p>Stock density affects fish growth and water quality. Aim for 2-3 fingerlings per square meter in large ponds, but adjust based on your water management capacity.</p>
+          <p>Higher stocking densities will require more intensive water quality management.</p>
+          <h4>Acquiring Fingerlings:</h4>
+          <p>Purchase from reputable hatcheries to ensure healthy and disease-free fish. Inspect the fish for signs of illness (e.g., fin rot, unusual lethargy) before stocking.</p>   
+        </div>
+
+        <!-- Feeding Your Catfish Section -->
+        <div id="feeding" class="guide-content">
+          <h7>Feeding Your Catfish</h7>
+          <h4>Feed Selection:</h4>
+          <p>Use commercially available catfish feeds that provide a balanced diet. Look for feeds high in protein (28-32%) for juvenile fish to promote rapid growth.</p>
+          <p>Transition to lower protein feeds (20-25%) as the fish mature.</p>
+          <h4>Feeding Frequency:</h4>
+          <p>Juvenile catfish should be fed 3-4 times a day, while mature catfish can be fed twice a day.</p>
+          <p>Use an automatic feeder for large-scale farms to maintain feeding consistency.</p>
+        </div>
+
+        <!-- Monitoring Fish Health Section -->
+        <div id="health" class="guide-content">
+          <h7>Monitoring Fish Health</h7>
+          <h4>Disease Prevention:</h4>
+          <p>Regularly check the fish for signs of stress or disease. Symptoms include reduced feeding, abnormal swimming, discoloration, and open sores.</p>
+          <p>Maintain good water quality to prevent common diseases like fin rot, parasites, or bacterial infections.</p>
+          <p>Use probiotics or natural treatments to manage water quality and fish health.</p>
+          <h4>Biosecurity Measures:</h4>
+          <p>Prevent the introduction of diseases by limiting the access of wild animals and birds to the farm.</p>
+          <p>Quarantine new fish stocks for 2-3 weeks before introducing them to your pond.</p>
+        </div>
+
+        <!-- Harvesting and Marketing Section -->
+        <div id="harvesting" class="guide-content">
+          <h7>Harvesting and Marketing</h7>
+          <h4>Harvest Timing:</h4>
+          <p>Depending on the species and feeding strategy, catfish typically reach market size in 6-8 months.</p>
+          <p>Fish should weigh between 1-1.5 kg at harvest for optimal market value.</p>
+          <h4>Harvesting Methods:</h4>
+          <p><strong>Seining:</strong> Use large nets (seines) to gather the fish into one area for easy collection.</p>
+          <p><strong>Harvesting:</strong> Some farms drain the ponds completely, making it easier to collect the fish.</p>
+          <p>Ensure minimal stress to the fish during harvest to preserve quality.</p>
+          <h4>Harvesting Methods:</h4>
+          <p>Sell directly to local markets, restaurants, or wholesalers.</p>
+          <p>Consider adding value by processing fish (e.g., smoking or filleting) for higher market prices.</p>
+        </div>
+
+        <!-- Profitability and Sustainability Section -->
+        <div id="profit-sustain" class="guide-content">
+          <h7>Profitability and Sustainability</h7>
+          <h4>Cost Management:</h4>
+          <p>Feed is the largest operational cost in catfish farming, making up 60-70% of expenses. Effective feed management ensures profitability.</p>
+          <p>Monitor labor, transportation, and water management costs to maintain sustainable operations.</p>
+          <h4>Sustainability Practices:</h4>
+          <p>Use environmentally-friendly practices like water recirculation systems, biofilters, and organic feed sources.</p>
+          <p>Avoid overstocking to reduce the environmental impact and maintain healthy fish populations.</p>
+        </div>
+
+        <!-- Final Section -->
+        <div id="final" class="guide-content">
+          <h7>Final Tips for Success</h7>
+          <p>Start Small: If you’re new to catfish farming, start with a small operation to minimize risk. Learn the processes, monitor results, and scale up once you’re comfortable.</p>
+          <p>Continuous Learning: Stay informed about the latest techniques, tools, and best practices in catfish farming.</p>
+          <p>Stay Patient: Fish farming requires time, dedication, and patience. Monitor your farm closely, adapt as needed, and you will see rewards in the long run.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!------- Community Engagement Section Start ------->
+<section class="community-engagement-section section-padding-3" style="background-color: #f5f9fc;">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-12">
+        <div class="section-header">
+          <h3>Community Engagement & Social Responsibility</h3>
+          <p>We strive to build stronger communities through impactful initiatives and sustainable practices.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row engagement-flow">
+      <div class="col-md-4">
+        <div class="engagement-box">
+          <div class="engagement-number">01</div>
+          <div class="engagement-icon">
+            <img src="images/communities.png" alt="Empowering Local Communities">
+          </div>
+          <h5>Developing Local Communities</h5>
+          <p>We work with local farmers, providing them with the tools and resources to improve their livelihoods.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="engagement-box">
+          <div class="engagement-number">02</div>
+          <div class="engagement-icon">
+            <img src="images/eco-world.png" alt="Environmental Stewardship">
+          </div>
+          <h5>Environmental Management</h5>
+          <p>We contribute to environmental initiatives like water conservation to create a greener future.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="engagement-box">
+          <div class="engagement-number">03</div>
+          <div class="engagement-icon">
+            <img src="images/academic-research.png" alt="Education & Outreach">
+          </div>
+          <h5>Support Local Sustainability</h5>
+          <p>We raise awareness about sustainable farming and environmental practices, encouraging more eco-friendly solutions in the community.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!------- Community Engagement Section End ------->
+
+<section class="cuisine-section section-padding">
+  <div class="container">
+    <div class="section-header text-center">
+      <h3>Cuisine</h3>
+      <span class="line"></span>
+    </div>
+    
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <!-- Cuisine 1 -->
+        <div class="swiper-slide cuisine-card">
+          <div class="test-img">
+            <img src="images/Assorted-Meat-Pepper-Soup-1.jpg" alt="Pepper Soup">
+          </div>
+          <div class="test-text">
+            <span class="title">
+              <span><strong>Peppersoup</strong></span> is a spicy, aromatic soup cooked in a broth flavored with local spices like uda seeds, calabash nutmeg, and peppers.
+            </span>
+          </div>
+        </div>
+
+        <!-- Cuisine 2 -->
+        <div class="swiper-slide cuisine-card">
+          <div class="test-img">
+            <img src="images/maxresdefault.jpg" alt="Inihaw na Hito">
+          </div>
+          <div class="test-text">
+            <span class="title">
+              <span><strong>Inihaw na Hito (Grilled Catfish)</strong></span> marinated catfish with calamansi, soy sauce, garlic, and pepper, grilled over charcoal.
+            </span>
+          </div>
+        </div>
+
+        <!-- Cuisine 3 -->
+        <div class="swiper-slide cuisine-card">
+          <div class="test-img">
+            <img src="images/Catfish stew.jpg" alt="Catfish Stew">
+          </div>
+          <div class="test-text">
+            <span class="title">
+              <span><strong>Catfish Stew (Mafe)</strong></span> simmered in a rich sauce made from tomatoes, peanuts, and a blend of spices.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Navigation Arrows -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </div>
+</section>
+
+<!-------FAQ Start------->
+<section class="faq section-padding prelative" data-scroll-index='6'>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="sectioner-header text-center">
+          <h3>Frequently Asked Questions</h3>
+          <span class="line"></span>
+          <a>Here are some frequently asked questions if you have basic queries</a>
+        </div>
+        <div class="section-content">
+          <div class="row">
+            <div class="col-md-6 faq-content wow fadeInUp" data-wow-delay="0.2s">
+              <h4>faq 1</h4>
+              <p>ans 1</p>
+            </div>
+            <div class="col-md-6 faq-content wow fadeInUp" data-wow-delay="0.2s">
+              <h4>faq 2</h4>
+              <p>.</p>
+            </div>
+            <div class="col-md-6 faq-content wow fadeInUp" data-wow-delay="0.4s">
+              <h4>faq 3</h4>
+              <p>.</p>
+            </div>
+            <div class="col-md-6 faq-content wow fadeInUp" data-wow-delay="0.4s">
+              <h4>faq 4</h4>
+              <p>.</p>
+            </div>
+            <div class="col-md-6 faq-content wow fadeInUp" data-wow-delay="0.6s">
+              <h4>faq 5</h4>
+              <p>.</p>
+            </div>
+            <div class="col-md-6 faq-content wow fadeInUp" data-wow-delay="0.6s">
+              <h4>faq 6</h4>
+              <p>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-------FAQ End-------> 
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+  import { getFirestore, getDoc, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+      apiKey: "AIzaSyBHKPP96j8T_ZDh2SeXH2dR1fU7dx5fXVc",
+      authDomain: "login2-bbcac.firebaseapp.com",
+      projectId: "login2-bbcac",
+      storageBucket: "login2-bbcac.appspot.com",
+      messagingSenderId: "355293344565",
+      appId: "1:355293344565:web:58022c1d4e78566ab2527c"
+  };
+
+  // Initialize Firebase for SignUp
+  const app = initializeApp(firebaseConfig);
+  const signUp = document.getElementById("submitSignUp");
+    signUp.addEventListener('click', (event) => {
+        event.preventDefault();
+        const username = document.getElementById('username2').value;
+        const email = document.getElementById('email2').value;
+        const password = document.getElementById('password2').value;
+        const confirmPassword = document.getElementById('confirmPassword2').value;
+        const role = document.getElementById('selectedRole').value;
+
+        if (!role) {
+        alert("Please select a role before signing up.");
+        return;
+      }
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+      }
+
+      const auth = getAuth();
+      const db = getFirestore();
+  
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        const userData = {
+            username: username,
+            email: email,
+            role: role,
+        }
+        const docRef = doc(db, "users", user.uid);
+        // Redirect to the login page after successful signup
+        setDoc(docRef,userData)
+        .then(() => {
+        alert("User created successfully!");
+        $('#signupModal').modal('hide');  // Hide the SignUp modal
+        location.reload();
+      })
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorMessage);
+    })
+  });
+
+// Initialize Firebase for Login
+const signIn = document.getElementById("submitSignIn");
+  signIn.addEventListener('click', (event) => {
+    event.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const auth = getAuth();
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        alert('User logged in!');
+        // Redirect to the dashboard page after successful login
+        localStorage.setItem('loggedInUserId', user.uid);
+        window.location.href = "index.html";
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      alert(errorMessage);
+    });
+  });
+
+  // Initialize Firebase for Logout
+  const auth = getAuth();
+  const db = getFirestore();
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const loginLink = document.getElementById('loginLink');
+    const featureButtons = document.querySelectorAll('.feature-button');
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        loginLink.textContent = 'Logout';
+        loginLink.href = '#';
+        loginLink.onclick = (event) => {
+          event.preventDefault();
+          signOut(auth).then(() => {
+            console.log('User signed out.');
+            window.location.reload();
+          }).catch((error) => {
+            console.error('Sign out error:', error);
+          });
+        };
+        featureButtons.forEach(button => {
+              button.disabled = false;
+              button.onclick = null;  // Remove any previous click event
+            });
+      } else {
+        loginLink.textContent = 'Login';
+        loginLink.href = '#';  // Prevent default navigation
+        loginLink.onclick = (event) => {
+          event.preventDefault();  // Prevent default behavior
+          $('#loginModal').modal('show');  // Trigger the login modal
+        };
+
+        featureButtons.forEach(button => {
+          button.disabled = false;  // Allow button to be clickable for redirection
+          button.onclick = (event) => {
+            event.preventDefault();
+            $('#loginModal').modal('show');  // Trigger the login modal
+          }
+        })
+      }
+    })
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const auth = getAuth();
+    const db = getFirestore();
+    const dashboardLink = document.querySelector('.nav-link[href="dashboard.html"]');
+
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            if (userDoc.exists()) {
+                const userData = userDoc.data();
+                dashboardLink.addEventListener("click", (event) => {
+                    if (userData.role !== "Farmer") {
+                        event.preventDefault();
+                        alert("Access denied. Only Farmers can view the Dashboard.");
+                    }
+                });
+            }
+        } else {
+            // If not logged in, block access
+            dashboardLink.addEventListener("click", (event) => {
+                event.preventDefault();
+                alert("Please log in to access the Dashboard.");
+            });
+        }
+    });
+});
+
+</script>
+
+<!-- Include Swiper's JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script> 
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
+<!-- scrollIt js --> 
+<script src="js/scrollIt.min.js"></script> 
+<script src="js/wow.min.js"></script> 
+<script>
+	wow = new WOW();
+	wow.init();
+$(document).ready(function(e) {
+
+	$('#video-icon').on('click',function(e){
+	e.preventDefault();
+	$('.video-popup').css('display','flex');
+	$('.iframe-src').slideDown();
+	});
+	$('.video-popup').on('click',function(e){
+	var $target = e.target.nodeName;
+	var video_src = $(this).find('iframe').attr('src');
+	if($target != 'IFRAME'){
+	$('.video-popup').fadeOut();
+	$('.iframe-src').slideUp();
+	$('.video-popup iframe').attr('src'," ");
+	$('.video-popup iframe').attr('src',video_src);
+	}
+	});
+
+	$('.slider').bxSlider({
+	pager: false
+	});
+});
+    
+$(window).on("scroll",function () {
+
+	var bodyScroll = $(window).scrollTop(),
+	navbar = $(".navbar");
+	
+	if(bodyScroll > 50){
+	$('.navbar-logo img').attr('src','images/logo-black.png');
+	navbar.addClass("nav-scroll");
+
+}else{
+	$('.navbar-logo img').attr('src','images/logo.png');
+	navbar.removeClass("nav-scroll");
+}
+
+});
+$(window).on("load",function (){
+	var bodyScroll = $(window).scrollTop(),
+	navbar = $(".navbar");
+	
+	if(bodyScroll > 50){
+	$('.navbar-logo img').attr('src','images/logo-black.png');
+	navbar.addClass("nav-scroll");
+	}else{
+	$('.navbar-logo img').attr('src','images/logo-white.png');
+	navbar.removeClass("nav-scroll");
+	}
+
+	$.scrollIt({
+	
+	easing: 'swing',      // the easing function for animation
+	scrollTime: 900,       // how long (in ms) the animation takes
+	activeClass: 'active', // class given to the active nav element
+	onPageChange: null,    // function(pageIndex) that is called when page is changed
+	topOffset: -63
+	});
+});
+
+function showContent(sectionId) {
+  // Remove active class from all buttons and content
+  document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.guide-content').forEach(content => content.classList.remove('active'));
+
+  // Add active class to clicked button and corresponding content
+  document.querySelector(`[onclick="showContent('${sectionId}')"]`).classList.add('active');
+  document.getElementById(sectionId).classList.add('active');
+}
+
+  var swiper = new Swiper('.swiper-container', {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    loop: true,  // Allows infinite scrolling
+    mousewheel: true,  // Allows scrolling with mouse wheel
+    simulateTouch: true,  // Enables swipe gestures for non-touch devices
+    grabCursor: true,  // Shows the "grab" cursor on hover
+  });
+
+
+</script>
+</body> 
+</html>
