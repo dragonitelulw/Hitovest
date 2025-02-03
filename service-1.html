@@ -2186,16 +2186,25 @@ onAuthStateChanged(auth, async (user) => {
 
   </script>
    <!-- prediction script--> 
+    </script>
+   <!-- prediction script--> 
    <script>
     function generatePrediction() {
         let feedAmount = parseFloat(document.getElementById("FEEDS").value);
         let predictedWeightElement = document.getElementById("predictedWeight");
-    
-        // Show loading text
-        predictedWeightElement.innerText = "Calculating...";
-    
+
+        // Generate a random delay between 1.5s and 3.5s
+        let randomDelay = Math.random() * (3500 - 1500) + 1500;
+
+        // Show loading animation
+        let dots = 0;
+        let loadingInterval = setInterval(() => {
+            dots = (dots % 3) + 1;
+            predictedWeightElement.innerText = ".".repeat(dots);
+        }, 500);
+
         let minWeight, maxWeight;
-    
+
         if (feedAmount < 2) {
             minWeight = 140.0;
             maxWeight = 170.0;
@@ -2212,15 +2221,16 @@ onAuthStateChanged(auth, async (user) => {
             minWeight = 300.0;
             maxWeight = 350.0;
         }
-    
+
         let randomWeight = (Math.random() * (maxWeight - minWeight) + minWeight).toFixed(2);
-    
-        // Simulate a delay (2 seconds) before showing result
+
+        // Simulate a random delay before showing the result
         setTimeout(() => {
-            predictedWeightElement.innerText = randomWeight + " kg";
-        }, 2000);
+            clearInterval(loadingInterval); // Stop loading animation
+            predictedWeightElement.innerText = randomWeight + "kg";
+        }, randomDelay);
     }
-    </script>
+</script>
 <script>
     function checkFormCompletion() {
         const temp = document.getElementById('TEMP').value;
