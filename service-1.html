@@ -789,10 +789,10 @@ document.addEventListener("DOMContentLoaded", () => {
           <h2>Fish Weight Prediction</h2>
           <form action="/predict" method="post">
               <label for="TEMP">Water Temperature (°C):</label>
-              <input type="float" id="TEMP" name="TEMP" placeholder="Fetching..." readonly><br>
+              <input type="float" id="TEMP" name="TEMP" placeholder="Fetching temp or input temp..." required><br>
             
               <label for="W_PH">Water PH Level:</label>
-              <input type="float" id="W_PH" name="W_PH" placeholder="Fetching..." readonly><br>
+              <input type="float" id="W_PH" name="W_PH" placeholder="Fetching pH or input pH..." required><br>
             
               <label for="STOCK">Population:</label>
               <input type="number" id="STOCK" name="STOCK" placeholder="Enter population" required><br>
@@ -2226,6 +2226,26 @@ onAuthStateChanged(auth, async (user) => {
         }, 2000);
     }
     </script>
+  <script>
+    function checkFormCompletion() {
+        const temp = document.getElementById('TEMP').value;
+        const wph = document.getElementById('W_PH').value;
+        const stock = document.getElementById('STOCK').value;
+        const feeds = document.getElementById('FEEDS').value;
+        const land = document.getElementById('LAND').value;
+        const feedType = document.getElementById('FEEDTYPE').value;
+
+        document.getElementById('predictButton').disabled = !(temp && wph && stock && feeds && land && feedType);
+    }
+
+    document.getElementById('TEMP').addEventListener('input', checkFormCompletion);
+    document.getElementById('W_PH').addEventListener('input', checkFormCompletion);
+    document.getElementById('STOCK').addEventListener('input', checkFormCompletion);
+    document.getElementById('FEEDS').addEventListener('input', checkFormCompletion);
+    document.getElementById('LAND').addEventListener('input', checkFormCompletion);
+    document.getElementById('FEEDTYPE').addEventListener('change', checkFormCompletion);
+</script>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script> 
   <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
